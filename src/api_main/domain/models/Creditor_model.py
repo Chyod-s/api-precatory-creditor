@@ -12,7 +12,8 @@ class Creditor(Base):
 
     precatories = relationship("Precatory", back_populates="creditor")
     personal_documents = relationship("PersonalDocument", back_populates="creditor")
-
+    certificates = relationship("Certificate", back_populates="creditor")
+    
     __doc__ = "Modelo de Usuário"
 
     id.__doc__ = "ID do usuário"
