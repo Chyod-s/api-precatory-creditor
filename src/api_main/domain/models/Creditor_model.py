@@ -3,14 +3,15 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
 class Creditor(Base):
-    __tablename__ = "creditor"
+    __tablename__ = "credor"
     id = Column(Integer, primary_key=True)
     nome = Column(String, nullable=False)
     cpf_cnpj = Column(String, nullable=False, unique=True)
     email = Column(String, nullable=True)
     telefone = Column(String, nullable=True)
 
-    precatories = relationship("Precatory", back_populates="credor")
+    precatories = relationship("Precatory", back_populates="creditor")
+    personal_documents = relationship("PersonalDocument", back_populates="creditor")
 
     __doc__ = "Modelo de Usuário"
 
@@ -21,4 +22,4 @@ class Creditor(Base):
     telefone.__doc__ = "Telefone do usuário"
 
     def __repr__(self):
-        return f"Creditor(id={self.id}, name={self.name}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone})"
+        return f"Creditor(id={self.id}, nome={self.nome}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone})"
