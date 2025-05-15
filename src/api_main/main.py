@@ -1,4 +1,3 @@
-from colorama import init
 from flask import Flask
 from dotenv import load_dotenv
 from src.api_main.infraestructure.database import init_db, engine

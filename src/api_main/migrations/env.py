@@ -25,7 +25,9 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data'))
 os.makedirs(BASE_DIR, exist_ok=True)  # Cria se não existir
 
 DB_PATH = os.path.join(BASE_DIR, 'precatory-creditor.db')
-DATABASE_URL = f"sqlite:///{DB_PATH}"
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+
 
 def run_migrations_offline() -> None:
     """Executa as migrações no modo offline."""
