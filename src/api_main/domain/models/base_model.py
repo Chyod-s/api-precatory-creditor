@@ -1,5 +1,5 @@
-from .base import Base
-from sqlalchemy import Column, Date, Integer, String
+from ...infraestructure.database.base import Base
+from sqlalchemy import Column, String
 
 class BaseModel(Base):
     __abstract__ = True
