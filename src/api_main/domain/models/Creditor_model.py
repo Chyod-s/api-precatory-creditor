@@ -1,8 +1,8 @@
-from .base import Base
+from .base_model import BaseModel
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-class Creditor(Base):
+class Creditor(BaseModel):
     __tablename__ = "credor"
     id = Column(Integer, primary_key=True)
     nome = Column(String, nullable=False)

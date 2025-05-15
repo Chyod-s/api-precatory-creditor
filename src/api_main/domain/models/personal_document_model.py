@@ -1,9 +1,9 @@
 from api_main.domain.enums.personal_document_enum import PersonalDocumentEnum
-from .base import Base
+from .base_model import BaseModel
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, Enum
 from sqlalchemy.orm import relationship
 
-class PersonalDocument(Base):
+class PersonalDocument(BaseModel):
     __tablename__ = "documento_pessoal"
     id = Column(Integer, primary_key=True)
     credor_id = Column(Integer, ForeignKey("credor.id"), nullable=False)

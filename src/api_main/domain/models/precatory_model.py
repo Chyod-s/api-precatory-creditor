@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Date, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from .base import Base
+from .base_model import BaseModel
 
-class Precatory(Base):
+class Precatory(BaseModel):
     __tablename__ = "precatorio"
     id = Column(Integer, primary_key=True)
     credor_id = Column(Integer, ForeignKey("credor.id"), nullable=False)

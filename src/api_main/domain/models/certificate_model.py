@@ -1,9 +1,9 @@
 from api_main.domain.enums.certificate_enum import DocumentStatus, DataOrigin, EntityType
-from .base import Base
+from .base_model import BaseModel
 from sqlalchemy import Column, Date, Integer, String, Enum
 from sqlalchemy.orm import relationship
 
-class Certificate(Base):
+class Certificate(BaseModel):
     __tablename__ = "certidao"
     id = Column(Integer, primary_key=True)
     credor_id = Column(Integer, nullable=False)
