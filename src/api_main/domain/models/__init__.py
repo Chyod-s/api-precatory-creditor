@@ -1,3 +1,3 @@
-from .user_model import Base, User
+from .Creditor_model import Base, Creditor
 
-__all__ = ["Base", "User"]
+__all__ = ["Base", "Creditor"]

@@ -3,8 +3,8 @@ from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()
 
-class User(Base):
-    __tablename__ = "users"
+class Creditor(Base):
+    __tablename__ = "creditor"
     id = Column(Integer, primary_key=True)
     name = Column(String)
     cpf_cnpj = Column(String)
