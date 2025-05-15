@@ -1,5 +1,6 @@
 from .base_model import BaseModel
 from sqlalchemy import Column, Integer, String
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(BaseModel):
     __tablename__ = "users"
@@ -7,12 +8,14 @@ class User(BaseModel):
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_name = Column(String, nullable=True, unique=True)
-    password_hash = Column(Integer, nullable=True)
+    password = Column(String, nullable=True) 
 
-    __doc__ = "Modelo de Usuário"
-    id.__doc__ = "ID do usuário"
-    user_name.__doc__ = "Nome do usuário"
-    password_hash.__doc__ = "Hash da senha do usuário"
+    def __init__(self, user_name: str, password: str):
+        self.user_name = user_name
+        self.password = generate_password_hash(password or "")
 
-    def __repr__(self):
-        return f"User(id={self.id}, user_name={self.user_name}, password_hash={self.password_hash})"
+    def verificar_senha(self, senha: str):
+        """ Verifica se a senha informada é a mesma do usuário """
+        if not isinstance(self.password, str) or not self.password:
+            return False
+        return check_password_hash(self.password, senha)
