@@ -1,24 +1,24 @@
-from sqlalchemy.ext.declarative import declarative_base
+from .base import Base
 from sqlalchemy import Column, Integer, String
-
-Base = declarative_base()
+from sqlalchemy.orm import relationship
 
 class Creditor(Base):
     __tablename__ = "creditor"
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    cpf_cnpj = Column(String)
-    email = Column(String)
-    telefone = Column(String)
+    nome = Column(String, nullable=False)
+    cpf_cnpj = Column(String, nullable=False, unique=True)
+    email = Column(String, nullable=True)
+    telefone = Column(String, nullable=True)
+
+    precatories = relationship("Precatory", back_populates="credor")
 
     __doc__ = "Modelo de Usuário"
 
     id.__doc__ = "ID do usuário"
-    name.__doc__ = "Nome do usuário"
+    nome.__doc__ = "Nome do usuário"
     cpf_cnpj.__doc__ = "CPF ou CNPJ do usuário"
     email.__doc__ = "Email do usuário"
     telefone.__doc__ = "Telefone do usuário"
 
     def __repr__(self):
-        return f"User(id={self.id}, name={self.name}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone})"
-    
+        return f"Creditor(id={self.id}, name={self.name}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone})"
