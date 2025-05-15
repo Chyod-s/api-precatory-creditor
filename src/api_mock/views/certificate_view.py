@@ -1,0 +1,10 @@
+from flask import Blueprint, request
+from api_mock.controllers.certificates_controller import search_certificate_by_cpf
+
+certificate_bp = Blueprint('certidao', __name__)
+
+@certificate_bp.route('/api/certidoes', methods=['GET'])
+def get_certificate():
+    cpf_cnpj = request.args.get('cpf_cnpj')
+    
+    return search_certificate_by_cpf(cpf_cnpj)
