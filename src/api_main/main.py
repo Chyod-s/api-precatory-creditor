@@ -1,8 +1,9 @@
 from colorama import init
 from flask import Flask
 from dotenv import load_dotenv
-from .infraestructure.database import init_db, engine
+from src.api_main.infraestructure.database import init_db, engine
 from src.api_main.config import Config
+from .interface.http import blueprints
 import os
 
 load_dotenv()
@@ -14,8 +15,10 @@ app.secret_key = secret_key
 
 app.config.from_object(Config)
 
+for blueprint in blueprints:
+    app.register_blueprint(blueprint, url_prefix="/api")
+
 init_db(engine) 
 
 if __name__ == "__main__":
     app.run(host=app.config['HOST'], port=app.config['PORT'], debug=app.config['DEBUG'])
-    
