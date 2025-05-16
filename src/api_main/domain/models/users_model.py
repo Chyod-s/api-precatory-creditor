@@ -20,8 +20,9 @@ class User(BaseModel):
         return db.query(cls).filter_by(user_name=user_name).first() is not None
     
     @classmethod
-    def get_user_by_id(cls, db, user_id):
+    def get_id_by_name(cls, db, user_id):
         return db.query(cls).filter_by(id=user_id).first()
+        
     
     @classmethod
     def get_password_by_user_name(cls, db, user_name):
