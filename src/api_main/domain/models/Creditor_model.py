@@ -14,13 +14,15 @@ class Creditor(BaseModel):
     personal_documents = relationship("PersonalDocument", back_populates="creditor")
     certificates = relationship("Certificate", back_populates="creditor")
     
-    __doc__ = "Modelo de Usuário"
+    def __init__(self, nome: str, cpf_cnpj: str, email: str, telefone: str):
+        self.nome = nome
+        self.cpf_cnpj = cpf_cnpj
+        self.email = email
+        self.telefone = telefone
 
-    id.__doc__ = "ID do usuário"
-    nome.__doc__ = "Nome do usuário"
-    cpf_cnpj.__doc__ = "CPF ou CNPJ do usuário"
-    email.__doc__ = "Email do usuário"
-    telefone.__doc__ = "Telefone do usuário"
-
+    @classmethod
+    def user_exists(cls, db, cpf_cnpj: str):
+        return db.query(cls).filter_by(cpf_cnpj=cpf_cnpj).first() is not None
+    
     def __repr__(self):
-        return f"Creditor(id={self.id}, nome={self.nome}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone})"
+        return f"<Credor(nome={self.nome}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone})>"
