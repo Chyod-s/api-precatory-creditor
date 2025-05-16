@@ -1,11 +1,15 @@
+import token
+from tokenize import String
 from flask import jsonify, request
 from src.api_main.domain.models.users_model import User
 from src.api_main.infraestructure.database.engine import get_db
+from src.api_main.infraestructure.jwt.jwt_handler import generate_token, decode_token
+
 
 def create_user():
     db = next(get_db())
     data = request.get_json()
-
+    
     user_name = data.get('user_name', '')
     password = data.get('password', '')
 
@@ -19,5 +23,12 @@ def create_user():
 
     db.add(new_user)
     db.commit()
+    db.refresh(new_user)
 
-    return jsonify({"message": "Usuário criado com sucesso!"}), 201
+    token = generate_token(user_id=new_user.id)  # type: ignore
+
+    return jsonify({"status": "success",
+                    "message": "Usuário criado com sucesso!",
+                    "data": {
+                        "token": token
+                    }}), 201
