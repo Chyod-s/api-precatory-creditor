@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from src.api_main.infraestructure.database import init_db, engine
 from src.api_main.config import Config
-from src.api_main.interface.http import blueprints
+from src.api_main.interface.http import user_ns
+from src.api_main.interface.http.swagger_config import api
 import os
 
 load_dotenv()
@@ -15,10 +16,11 @@ app.secret_key = secret_key
 
 app.config.from_object(Config)
 
+api.init_app(app)
+
 jwt = JWTManager(app)
 
-for blueprint in blueprints:
-    app.register_blueprint(blueprint, url_prefix="/api")
+api.add_namespace(user_ns)
 
 init_db(engine) 
 

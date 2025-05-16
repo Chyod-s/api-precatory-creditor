@@ -1,19 +1,44 @@
-from flask import Blueprint
+from flask import jsonify
+from flask_restx import Namespace, Resource
+from src.api_main.interface.http.swagger import user_parser
+from src.api_main.interface.http.swagger import certificate_parser
 from src.api_main.interface.http.controllers.certificate_controller import certificate_personal_document
 from src.api_main.interface.http.controllers.personal_document_controller import create_personal_document
 from src.api_main.interface.http.controllers.creditor_controller import create_creditor
 from src.api_main.interface.http.controllers.user_controller import create_user, get_user
 from flask_jwt_extended import jwt_required
 
-user_bp = Blueprint('user', __name__)
+user_ns = Namespace('user', description='Operações relacionadas ao usuário')
 
-user_bp.route('/user', methods=['POST'])(create_user)
+@user_ns.route('/user')
+class UserResource(Resource):
 
-user_bp.route('/user', methods=['GET'])(get_user)
+    @jwt_required()
+    def get(self):
+        return get_user()
 
-user_bp.route('/creditor', methods=['POST'])(jwt_required()(create_creditor))
+    @user_ns.expect(user_parser)
+    def post(self):
+        args = user_parser.parse_args()
+        response, status_code = create_user(args)
+        return response, status_code
 
-user_bp.route('/personal_document', methods=['POST'])(jwt_required()(create_personal_document))
+@user_ns.route('/creditor')
+class CreditorResource(Resource):
+    @jwt_required()
+    def post(self):
+        return create_creditor()
 
-user_bp.route('/certificate', methods=['POST'])(jwt_required()(certificate_personal_document))
-    
+@user_ns.route('/personal_document')
+class PersonalDocumentResource(Resource):
+    @jwt_required()
+    def post(self):
+        return create_personal_document()
+
+@user_ns.route('/certificate')
+class CertificateResource(Resource):
+    @jwt_required()
+    @user_ns.expect(certificate_parser)
+    def post(self):
+        args = certificate_parser.parse_args()
+        return certificate_personal_document(args)

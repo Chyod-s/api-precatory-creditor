@@ -7,9 +7,8 @@ from src.api_main.usecases.certificate.certificate_user_usecase import Certifica
 from src.api_main.domain.models.creditor_model import Creditor
 from src.api_main.infraestructure.database.engine import get_db
 
-def certificate_personal_document():
+def certificate_personal_document(data):
     db = next(get_db())
-    data = request.get_json()
     user_id = get_jwt_identity()
     
     creditor = Creditor.get_by_id(db, user_id)

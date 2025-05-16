@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import String
-from api_main.domain.enums.certificate_enum import DataOrigin, DocumentStatus, EntityType
-from api_main.domain.models.certificate_model import Certificate
+from src.api_main.domain.enums.certificate_enum import DataOrigin, DocumentStatus, EntityType
+from src.api_main.domain.models.certificate_model import Certificate
 
 
 class CertificateUserUseCase:

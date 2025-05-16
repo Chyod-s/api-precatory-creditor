@@ -1,3 +1,3 @@
-from src.api_main.interface.http.routes.user_routes import user_bp
+from src.api_main.interface.http.routes.user_routes import user_ns
 
-blueprints = [user_bp]
+namespaces = [user_ns]
