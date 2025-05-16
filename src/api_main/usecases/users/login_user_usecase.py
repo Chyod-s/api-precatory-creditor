@@ -1,6 +1,5 @@
-from tabnanny import check
 from src.api_main.domain.models.users_model import User
-from src.api_main.infraestructure.handler.jwt_handler import generate_token
+from flask_jwt_extended import create_access_token
 
 class LoginUserUseCase:
     def __init__(self, db):
@@ -17,7 +16,7 @@ class LoginUserUseCase:
         if not user.check_password(user.password,password):
             raise ValueError("Senha inválida.")
 
-        token = generate_token(user_id=user.id)  # type: ignore
+        token = create_access_token(identity=str(user.id)) 
 
         if not token:
             raise ValueError("Erro ao gerar o token.")

@@ -1,5 +1,5 @@
 from src.api_main.domain.models.users_model import User
-from src.api_main.infraestructure.handler.jwt_handler import generate_token
+from flask_jwt_extended import create_access_token
 
 class CreateUserUseCase:
     def __init__(self, db):
@@ -18,5 +18,5 @@ class CreateUserUseCase:
         self.db.commit()
         self.db.refresh(new_user)
 
-        token = generate_token(user_id=new_user.id)  # type: ignore
+        token = create_access_token(identity=str(new_user.id)) 
         return {"token": token, "user_id": new_user.id}
