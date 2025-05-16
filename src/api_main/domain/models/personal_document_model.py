@@ -1,5 +1,5 @@
-from api_main.domain.enums.personal_document_enum import PersonalDocumentEnum
-from .base_model import BaseModel
+from src.api_main.domain.enums.personal_document_enum import PersonalDocumentEnum
+from src.api_main.domain.models.base_model import BaseModel
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, Enum
 from sqlalchemy.orm import relationship
 

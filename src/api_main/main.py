@@ -2,7 +2,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from src.api_main.infraestructure.database import init_db, engine
 from src.api_main.config import Config
-from .interface.http import blueprints
+from src.api_main.interface.http import blueprints
 import os
 
 load_dotenv()

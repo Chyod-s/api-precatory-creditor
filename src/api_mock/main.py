@@ -1,6 +1,6 @@
 from flask import Flask
 from src.api_mock.config import Config
-from api_mock.views.certificate_view import certificate_bp
+from src.api_mock.views.certificate_view import certificate_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)

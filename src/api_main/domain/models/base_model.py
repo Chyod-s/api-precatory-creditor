@@ -1,4 +1,4 @@
-from ...infraestructure.database.base import Base
+from src.api_main.infraestructure.database.base import Base
 from sqlalchemy import Column, String
 
 class BaseModel(Base):

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Date, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from .base_model import BaseModel
+from src.api_main.domain.models.base_model import BaseModel
 
 class Precatory(BaseModel):
     __tablename__ = "precatorio"

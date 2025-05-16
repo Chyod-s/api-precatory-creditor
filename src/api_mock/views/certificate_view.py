@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from api_mock.controllers.certificates_controller import search_certificate_by_cpf
+from src.api_mock.controllers.certificates_controller import search_certificate_by_cpf
 
 certificate_bp = Blueprint('certidao', __name__)
 

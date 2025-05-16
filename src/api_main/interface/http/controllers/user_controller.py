@@ -1,7 +1,6 @@
-from hmac import new
 from flask import jsonify, request
-from ....domain.models.users_model import User
-from ....infraestructure.database.engine import get_db
+from src.api_main.domain.models.users_model import User
+from src.api_main.infraestructure.database.engine import get_db
 
 def create_user():
     db = next(get_db())

@@ -1,5 +1,5 @@
-from api_main.domain.enums.certificate_enum import DocumentStatus, DataOrigin, EntityType
-from .base_model import BaseModel
+from src.api_main.domain.enums.certificate_enum import DocumentStatus, DataOrigin, EntityType
+from src.api_main.domain.models.base_model import BaseModel
 from sqlalchemy import Column, Date, Integer, String, Enum
 from sqlalchemy.orm import relationship
 

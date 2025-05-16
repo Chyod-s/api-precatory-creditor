@@ -1,4 +1,4 @@
-from .base_model import BaseModel
+from src.api_main.domain.models.base_model import BaseModel
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 

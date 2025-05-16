@@ -1,4 +1,4 @@
-from .base_model import BaseModel
+from src.api_main.domain.models.base_model import BaseModel
 from sqlalchemy import Column, Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
 

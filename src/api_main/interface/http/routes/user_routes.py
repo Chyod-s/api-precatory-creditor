@@ -1,5 +1,5 @@
 from flask import Blueprint
-from ..controllers.user_controller import create_user
+from src.api_main.interface.http.controllers.user_controller import create_user
 
 user_bp = Blueprint('user', __name__)
 
