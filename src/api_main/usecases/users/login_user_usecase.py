@@ -1,3 +1,4 @@
+from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
 from flask_jwt_extended import create_access_token
 
@@ -7,14 +8,14 @@ class LoginUserUseCase:
 
     def execute(self, user_name: str, password: str):
         if not user_name or not password:
-            raise ValueError("Nome de usuário e senha são obrigatórios.")
-
+            raise CustomAPIException("Informe um nome de usuário e uma senha válidos.", 422)
+            
         user = User.get_user(self.db, user_name)
         if not user:
-            raise ValueError("Usuário não encontrado.")
+            raise CustomAPIException("Usuário não encontrado.", 422)
 
         if not user.check_password(user.password,password):
-            raise ValueError("Senha inválida.")
+            raise CustomAPIException("Senha inválida.", 422)
 
         token = create_access_token(identity=str(user.id)) 
 

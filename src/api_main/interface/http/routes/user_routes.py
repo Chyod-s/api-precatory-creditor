@@ -1,6 +1,5 @@
-from flask import jsonify
 from flask_restx import Namespace, Resource
-from src.api_main.interface.http.swagger import user_parser
+from src.api_main.interface.http.swagger import create_user_parser, login_user_parser
 from src.api_main.interface.http.swagger import certificate_parser
 from src.api_main.interface.http.controllers.certificate_controller import certificate_personal_document
 from src.api_main.interface.http.controllers.personal_document_controller import create_personal_document
@@ -12,14 +11,15 @@ user_ns = Namespace('user', description='Operações relacionadas ao usuário')
 
 @user_ns.route('/user')
 class UserResource(Resource):
-
-    @jwt_required()
+    @user_ns.expect(login_user_parser)
     def get(self):
-        return get_user()
+        args = login_user_parser.parse_args()
+        response, status_code = get_user(args)
+        return response, status_code
 
-    @user_ns.expect(user_parser)
+    @user_ns.expect(create_user_parser)
     def post(self):
-        args = user_parser.parse_args()
+        args = create_user_parser.parse_args()
         response, status_code = create_user(args)
         return response, status_code
 

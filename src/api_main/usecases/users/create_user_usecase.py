@@ -1,3 +1,4 @@
+from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
 from flask_jwt_extended import create_access_token
 
@@ -7,10 +8,10 @@ class CreateUserUseCase:
 
     def execute(self, user_name: str, password: str):
         if not user_name or not password:
-            raise ValueError("Dados inválidos")
+            raise CustomAPIException("Informe um nome de usuário e uma senha válidos.", 422)
 
         if User.user_exists(self.db, user_name):
-            raise ValueError("Usuário já existe")
+            raise CustomAPIException("Usuário já existe.", 422)
 
         new_user = User(user_name=user_name, password=password)
 
