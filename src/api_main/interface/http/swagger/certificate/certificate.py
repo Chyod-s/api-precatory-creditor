@@ -13,23 +13,27 @@ certificate_parser.add_argument(
     "tipo",
     type=str,
     required=True,
+    location='form',
     help="Tipo do documento"
 )
 certificate_parser.add_argument(
     "origem",
     type=str,
     required=True,
+    location='form',
     help="Origem do documento"
 )
 certificate_parser.add_argument(
     "status",
     type=str,
     required=True,
+    location='form',
     help="Status do documento"
 )
 certificate_parser.add_argument(
     "recebida_em",
     type=str,
     required=True,
+    location='form',
     help="Data de recebimento no formato YYYY-MM-DD"
 )

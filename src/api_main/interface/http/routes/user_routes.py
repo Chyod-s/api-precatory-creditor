@@ -41,4 +41,5 @@ class CertificateResource(Resource):
     @user_ns.expect(certificate_parser)
     def post(self):
         args = certificate_parser.parse_args()
-        return certificate_personal_document(args)
+        response, status_code = certificate_personal_document(args)
+        return response, status_code
