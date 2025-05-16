@@ -14,8 +14,12 @@ class User(BaseModel):
         self.user_name = user_name
         self.password = generate_password_hash(password or "")
 
-    def verificar_senha(self, senha: str):
+    def check_password(self, senha: str):
         """ Verifica se a senha informada é a mesma do usuário """
         if not isinstance(self.password, str) or not self.password:
             return False
         return check_password_hash(self.password, senha)
+    
+    @classmethod
+    def user_exists(cls, db, user_name):
+        return db.query(cls).filter_by(user_name=user_name).first() is not None
