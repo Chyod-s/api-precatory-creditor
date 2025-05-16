@@ -8,15 +8,23 @@ class LoginUserUseCase:
 
     def execute(self, user_name: str, password: str):
         if not user_name or not password:
-            raise ValueError("Dados inválidos")
+            raise ValueError("Nome de usuário e senha são obrigatórios.")
 
-        if User.user_exists(self.db, user_name):
-            raise ValueError("Usuário já existe")
+        user = User.get_user(self.db, user_name)
+        if not user:
+            raise ValueError("Usuário não encontrado.")
 
-        check_password = User.check_password(self.db, user_name, password)
+        if not user.check_password(user.password,password):
+            raise ValueError("Senha inválida.")
 
-        if not check_password:
-            raise ValueError("Senha inválida")
+        token = generate_token(user_id=user.id)  # type: ignore
+
+        if not token:
+            raise ValueError("Erro ao gerar o token.")
         
-        token = generate_token(user_id=new_user.id)  # type: ignore
+        User.att_updated_at(self.db, user)
         
+        return {
+            "user_name": user.user_name,
+            "token": token
+        }

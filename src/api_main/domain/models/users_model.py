@@ -14,23 +14,16 @@ class User(BaseModel):
         self.user_name = user_name
         self.password = generate_password_hash(password or "")
 
-    
     @classmethod
-    def user_exists(cls, db, user_name):
-        return db.query(cls).filter_by(user_name=user_name).first() is not None
-    
+    def get_user(cls, db, user_name: str):
+        try:
+            user = db.query(cls).filter_by(user_name=user_name).first()
+            return user
+        except Exception as e:
+            print(f"Error retrieving user: {e}")
+            return None
+
     @classmethod
-    def get_id_by_name(cls, db, user_id):
-        return db.query(cls).filter_by(id=user_id).first()
+    def check_password(cls, stored_password: str, password: str):
+        return check_password_hash(stored_password, password)
         
-    
-    @classmethod
-    def get_password_by_user_name(cls, db, user_name):
-        return db.query(cls).filter_by(user_name=user_name).first()
-    
-    @classmethod
-    def check_password(cls, db, user_name, password):
-        user = cls.get_password_by_user_name(db, user_name)
-        if user:
-            return check_password_hash(user.password, password)
-        return False
