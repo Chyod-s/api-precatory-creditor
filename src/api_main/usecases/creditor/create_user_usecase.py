@@ -1,3 +1,4 @@
+from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.creditor_model import Creditor
 
 class CreateUserUseCase:
@@ -6,10 +7,10 @@ class CreateUserUseCase:
 
     def execute(self, nome: str, cpf_cnpj: str, email: str, telefone: str, user_id: int):
         if not nome or not cpf_cnpj:
-            raise ValueError("Dados inválidos")
-
+            raise CustomAPIException("Informe um nome e CPF/CNPJ válidos.", 422)
+            
         if Creditor.user_exists(self.db, cpf_cnpj):
-            raise ValueError("Usuário já existe")
+            raise CustomAPIException("Usuário já existe.", 422)
 
         new_user = Creditor(nome=nome, cpf_cnpj=cpf_cnpj, email=email, telefone=telefone, user_id=user_id)
 

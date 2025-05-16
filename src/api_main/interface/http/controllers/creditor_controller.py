@@ -1,12 +1,12 @@
 from flask import jsonify, request
 from flask_jwt_extended import get_jwt_identity
+from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.usecases.precatory.precatory_user_usecase import CreatePrecatoryUseCase
 from src.api_main.usecases.creditor.create_user_usecase import CreateUserUseCase
 from src.api_main.infraestructure.database.engine import get_db
 
-def create_creditor():
+def create_creditor(data):
     db = next(get_db())
-    data = request.get_json()
     user_id = get_jwt_identity()
     
     try:
@@ -29,12 +29,11 @@ def create_creditor():
                 data_publicacao=precatory_data.get('data_publicacao'),
                 credor_id=result['user_id'] # type: ignore
             )
-            print("Precatory criado com ID:", precatory_result['precatory_id'])
-
-        return jsonify({"status": "success",
-                        "message": "Credor criado com sucesso!"
-                        }), 201
+            
+        return {"status": "success",
+                "message": "Credor criado com sucesso!"
+                }, 201
     
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+    except CustomAPIException as e:
+        return e.to_dict(), e.status_code
     

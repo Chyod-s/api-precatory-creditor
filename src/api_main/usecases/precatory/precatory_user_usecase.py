@@ -1,3 +1,4 @@
+from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.precatory_model import Precatory
 from datetime import datetime
 
@@ -7,10 +8,10 @@ class CreatePrecatoryUseCase:
 
     def execute(self, numero_precatorio: str, valor_nominal: float, foro: str, data_publicacao: str, credor_id: int):
         if not all([numero_precatorio, valor_nominal, foro, data_publicacao]):
-                raise ValueError("Dados inválidos")
+            raise CustomAPIException("dados inválidos", 422)
 
         if not isinstance(valor_nominal, (int, float)):
-            raise ValueError("Valor nominal deve ser um número")
+            raise CustomAPIException("Valor nominal deve ser um número", 422)
 
         data_publicacao_date = datetime.strptime(data_publicacao, '%Y-%m-%d').date()
 
