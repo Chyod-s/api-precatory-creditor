@@ -18,7 +18,7 @@ def create_creditor():
             data.get('telefone'),
             user_id
             )
-
+        
         if 'precatorio' in data:
             precatory_data = data['precatorio']
             precatory_use_case = CreatePrecatoryUseCase(db)
@@ -27,9 +27,10 @@ def create_creditor():
                 valor_nominal=precatory_data.get('valor_nominal'),
                 foro=precatory_data.get('foro'),
                 data_publicacao=precatory_data.get('data_publicacao'),
-                credor_id=user_id
+                credor_id=result['user_id'] # type: ignore
             )
-            
+            print("Precatory criado com ID:", precatory_result['precatory_id'])
+
         return jsonify({"status": "success",
                         "message": "Credor criado com sucesso!"
                         }), 201
