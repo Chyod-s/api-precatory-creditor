@@ -27,5 +27,9 @@ class Creditor(BaseModel):
     def user_exists(cls, db, cpf_cnpj: str):
         return db.query(cls).filter_by(cpf_cnpj=cpf_cnpj).first() is not None
 
+    @classmethod
+    def get_by_id(cls, db, credor_id: int):
+        return db.query(cls).filter_by(user_id=credor_id).first()
+    
     def __repr__(self):
         return f"<Credor(nome={self.nome}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone}, user_id={self.user_id})>"

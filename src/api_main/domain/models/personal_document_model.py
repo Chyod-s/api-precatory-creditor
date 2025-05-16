@@ -13,12 +13,11 @@ class PersonalDocument(BaseModel):
 
     creditor = relationship("Creditor", back_populates="personal_documents")
 
-    __doc__ = "Modelo de Documento Pessoal"
-    id.__doc__ = "ID do documento pessoal"
-    credor_id.__doc__ = "ID do credor"
-    tipo.__doc__ = "Tipo do documento pessoal"
-    arquivo_url.__doc__ = "URL do arquivo do documento pessoal"
-    enviado_em.__doc__ = "Data de envio do documento pessoal"
+    def __init__(self, credor_id, tipo, arquivo_url, enviado_em): 
+        self.credor_id = credor_id
+        self.tipo = tipo
+        self.arquivo_url = arquivo_url
+        self.enviado_em = enviado_em
 
     def __repr__(self):
         return f"PersonalDocument(id={self.id}, credor_id={self.credor_id}, tipo={self.tipo.name}, arquivo_url={self.arquivo_url}, enviado_em={self.enviado_em})"
