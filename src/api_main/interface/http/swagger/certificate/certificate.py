@@ -14,21 +14,21 @@ certificate_parser.add_argument(
     type=str,
     required=True,
     location='form',
-    help="Tipo do documento"
+    help="Tipo do documento FEDERAL, STATE, MUNICIPAL ou LABOR"
 )
 certificate_parser.add_argument(
     "origem",
     type=str,
     required=True,
     location='form',
-    help="Origem do documento"
+    help="Origem do documento MANUAL ou API"
 )
 certificate_parser.add_argument(
     "status",
     type=str,
     required=True,
     location='form',
-    help="Status do documento"
+    help="Status do documento NEGATIVE, POSITIVE, INVALID ou PENDING"
 )
 certificate_parser.add_argument(
     "recebida_em",
