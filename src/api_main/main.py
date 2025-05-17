@@ -27,9 +27,9 @@ jwt = JWTManager(app)
 @app.route('/home')
 def home():
     if 'user' in session:
-        return render_template('pages/dashboard.html')
-    else:
         return render_template('pages/login.html')
+    else:
+        return render_template('pages/dashboard.html')
 
 init_db(engine)
 
