@@ -19,5 +19,24 @@ class PersonalDocument(BaseModel):
         self.arquivo_url = arquivo_url
         self.enviado_em = enviado_em
 
+    @classmethod
+    def get_all_personal_documents(cls, db, credor_id=None, tipo=None, enviado_em=None):
+        try:
+            query = db.query(cls)
+
+            if credor_id is not None:
+                query = query.filter(cls.credor_id == credor_id)
+            if tipo is not None:
+                query = query.filter(cls.tipo == tipo)
+            if enviado_em is not None:
+                query = query.filter(cls.enviado_em == enviado_em)
+
+            personal_documents = query.all()
+            return personal_documents
+
+        except Exception as e:
+            print(f"Erro ao buscar documentos pessoais: {e}")
+            return None
+        
     def __repr__(self):
         return f"PersonalDocument(id={self.id}, credor_id={self.credor_id}, tipo={self.tipo.name}, arquivo_url={self.arquivo_url}, enviado_em={self.enviado_em})"

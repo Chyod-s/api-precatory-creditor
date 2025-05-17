@@ -31,5 +31,9 @@ class Creditor(BaseModel):
     def get_by_id(cls, db, credor_id: int):
         return db.query(cls).filter_by(user_id=credor_id).first()
     
+    @classmethod
+    def get_all_creditors(cls, db):
+        return db.query(cls).all()
+    
     def __repr__(self):
         return f"<Credor(nome={self.nome}, cpf_cnpj={self.cpf_cnpj}, email={self.email}, telefone={self.telefone}, user_id={self.user_id})>"
