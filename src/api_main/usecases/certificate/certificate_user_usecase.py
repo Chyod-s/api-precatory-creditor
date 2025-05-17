@@ -14,7 +14,7 @@ class CertificateUserUseCase:
             raise CustomAPIException("Dados inválidos.", 422)
             
 
-        data_publicacao_date = datetime.strptime(recebida_em, '%Y-%m-%d').date()
+        data_publicacao_date = datetime.strptime(recebida_em, '%d/%m/%Y').date()
         
         new_certificate = Certificate(
             credor_id=credor_id,

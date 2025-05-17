@@ -20,5 +20,5 @@ find_certificate_parser.add_argument(
 find_certificate_parser.add_argument(
     "recebida_em",
     type=str,
-    help="Data de recebimento no formato 2025-05-17"
+    help="Data de recebimento no formato 17/05/2025"
 )

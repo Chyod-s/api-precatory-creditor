@@ -10,7 +10,7 @@ class PersonalDocumentUserUseCase:
         if not all([credor_id, tipo, arquivo_url, enviado_em]):
             raise CustomAPIException("Dados inválidos", 422)
 
-        data_publicacao_date = datetime.strptime(enviado_em, '%Y-%m-%d').date()
+        data_publicacao_date = datetime.strptime(enviado_em, '%d/%m/%Y').date()
 
         new_personal_document = PersonalDocument(
             credor_id=credor_id,

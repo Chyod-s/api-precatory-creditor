@@ -35,5 +35,5 @@ certificate_parser.add_argument(
     type=str,
     required=True,
     location='form',
-    help="Data de recebimento no formato 2025-05-17"
+    help="Data de recebimento no formato 17/05/2025"
 )

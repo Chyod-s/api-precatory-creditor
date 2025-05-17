@@ -1,3 +1,4 @@
+from datetime import datetime
 from src.api_main.domain.enums.certificate_enum import DataOrigin, DocumentStatus, EntityType
 from src.api_main.utils.serializers import serialize_certificate
 from src.api_main.domain.models.certificate_model import Certificate
@@ -13,6 +14,8 @@ class FindCertificatesUserUsecase:
         if not isinstance(credor_id, int):
             raise CustomAPIException("ID do credor deve ser um número inteiro.", 422)
 
+        data_publicacao_date = datetime.strptime(recebida_em, '%d/%m/%Y').date()
+
         certificates = Certificate.get_all_certificates(
             db=self.db,
             credor_id=credor_id,
@@ -20,7 +23,7 @@ class FindCertificatesUserUsecase:
             origem=origem,
             arquivo_url=arquivo_url,
             status=status,
-            recebida_em=recebida_em
+            recebida_em=data_publicacao_date
         )
 
         if not certificates:
