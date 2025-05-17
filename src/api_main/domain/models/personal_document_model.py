@@ -7,7 +7,7 @@ class PersonalDocument(BaseModel):
     __tablename__ = "documento_pessoal"
     id = Column(Integer, primary_key=True)
     credor_id = Column(Integer, ForeignKey("credor.id"), nullable=False)
-    tipo = Column(Enum(PersonalDocumentEnum), nullable=False, default=PersonalDocumentEnum.etc)
+    tipo = Column(Enum(PersonalDocumentEnum), nullable=False, default=PersonalDocumentEnum.ETC)
     arquivo_url = Column(String, nullable=True)
     enviado_em = Column(Date, nullable=True)
 
