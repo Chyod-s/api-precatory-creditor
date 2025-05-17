@@ -25,6 +25,32 @@ class Certificate(BaseModel):
         self.status = status
         self.recebida_em = recebida_em
 
+    @classmethod
+    def get_all_certificates(cls, db, credor_id=None, tipo=None, origem=None, arquivo_url=None, status=None, recebida_em=None):
+        try:
+            query = db.query(cls)
+
+            if credor_id:
+                query = query.filter(cls.credor_id == credor_id)
+            if tipo:
+                query = query.filter(cls.tipo == tipo)
+            if origem:
+                query = query.filter(cls.origem == origem)
+            if arquivo_url:
+                query = query.filter(cls.arquivo_url == arquivo_url)
+            if status:
+                query = query.filter(cls.status == status)
+            if recebida_em:
+                query = query.filter(cls.recebida_em == recebida_em)
+
+            certificates = query.all()
+            return certificates
+        
+        except Exception as e:
+            print(f"Erro ao buscar certificados: {e}")
+            return None
+
+
     def __repr__(self):
         return f"Certificate(id={self.id}, credor_id={self.credor_id}, tipo={self.tipo}, origem={self.origem}, arquivo_url={self.arquivo_url}, status={self.status}, recebida_em={self.recebida_em})"
     

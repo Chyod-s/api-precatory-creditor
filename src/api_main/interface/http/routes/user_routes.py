@@ -1,7 +1,6 @@
 from flask_restx import Namespace, Resource
-from src.api_main.interface.http.swagger import create_user_parser, login_user_parser, creditor_parser, personal_document_parser
-from src.api_main.interface.http.swagger import certificate_parser
-from src.api_main.interface.http.controllers.certificate_controller import certificate_personal_document
+from src.api_main.interface.http.swagger import certificate_parser, create_user_parser, login_user_parser, creditor_parser, personal_document_parser, find_certificate_parser
+from src.api_main.interface.http.controllers.certificate_controller import certificate_personal_document, find_certificates
 from src.api_main.interface.http.controllers.personal_document_controller import create_personal_document
 from src.api_main.interface.http.controllers.creditor_controller import create_creditor
 from src.api_main.interface.http.controllers.user_controller import create_user, get_user
@@ -61,4 +60,13 @@ class CertificateResource(Resource):
     def post(self):
         args = certificate_parser.parse_args()
         response, status_code = certificate_personal_document(args)
+        return response, status_code
+
+@user_ns.route('/buscar-certidoes')
+class FindCertificatesUserResource(Resource):
+    @jwt_required()
+    @user_ns.expect(find_certificate_parser)
+    def get(self):
+        args = find_certificate_parser.parse_args()
+        response, status_code = find_certificates(args)
         return response, status_code
