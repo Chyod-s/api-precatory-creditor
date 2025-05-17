@@ -1,3 +1,4 @@
+from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.personal_document_model import PersonalDocument
 from datetime import datetime
 
@@ -7,7 +8,7 @@ class PersonalDocumentUserUseCase:
 
     def execute(self, credor_id: int, tipo: str, arquivo_url: str, enviado_em: str):
         if not all([credor_id, tipo, arquivo_url, enviado_em]):
-            raise ValueError("Dados inválidos")
+            raise CustomAPIException("Dados inválidos", 422)
 
         data_publicacao_date = datetime.strptime(enviado_em, '%Y-%m-%d').date()
 

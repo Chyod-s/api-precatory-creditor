@@ -7,7 +7,7 @@ class Config:
 
     JWT_SECRET = os.getenv('JWT_SECRET')
     JWT_ALGORITHM = 'HS256'
-    JWT_EXP_DELTA_SECONDS = 3600  
+    JWT_EXP_DELTA_SECONDS = 14400  
 
     JWT_SECRET_KEY = os.getenv('JWT_SECRET')
     JWT_TOKEN_LOCATION = ['headers'] 
