@@ -10,12 +10,14 @@ class FindPersonalDocumentUserUseCase:
         
     def execute(self, credor_id: int, tipo: PersonalDocumentEnum, enviado_em: str):
         try:
-            data_publicacao_date = datetime.strptime(enviado_em, '%d/%m/%Y').date()
+            if enviado_em is not None:
+                data_publicacao_date = datetime.strptime(enviado_em, '%d/%m/%Y').date()
             
             personal_documents = PersonalDocument.get_all_personal_documents(
                 db=self.db, 
                 credor_id=credor_id, 
-                tipo=tipo, enviado_em=data_publicacao_date)
+                tipo=tipo, 
+                enviado_em=data_publicacao_date if enviado_em else None)
 
             if not personal_documents:
                 raise CustomAPIException("Documentos pessoais não encontrados.", 404)

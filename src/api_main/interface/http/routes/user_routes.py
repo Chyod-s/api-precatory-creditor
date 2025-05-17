@@ -1,4 +1,5 @@
 from flask_restx import Namespace, Resource
+from src.api_main.interface.http.controllers.aggregate_controller import find_aggregate
 from src.api_main.interface.http.swagger import certificate_parser, create_user_parser, login_user_parser, creditor_parser, personal_document_parser, find_certificate_parser
 from src.api_main.interface.http.controllers.certificate_controller import certificate_personal_document, find_certificates
 from src.api_main.interface.http.controllers.personal_document_controller import create_personal_document
@@ -69,4 +70,11 @@ class FindCertificatesUserResource(Resource):
     def get(self):
         args = find_certificate_parser.parse_args()
         response, status_code = find_certificates(args)
+        return response, status_code
+    
+@user_ns.route('/credores')
+class CreditorUserResource(Resource):
+    @jwt_required()
+    def get(self):
+        response, status_code = find_aggregate()
         return response, status_code
