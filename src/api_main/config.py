@@ -13,3 +13,6 @@ class Config:
     JWT_TOKEN_LOCATION = ['headers'] 
     JWT_HEADER_NAME = 'Authorization'
     JWT_HEADER_TYPE = 'Bearer'
+
+    ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.pdf'}
+    MAX_FILE_SIZE = 5 * 1024 * 1024

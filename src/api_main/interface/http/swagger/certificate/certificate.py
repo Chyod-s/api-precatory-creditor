@@ -7,7 +7,7 @@ certificate_parser.add_argument(
     location="files",
     type=FileStorage, 
     required=True,
-    help="Arquivo para upload"
+    help="Arquivos Permitidos .jpg, .jpeg, .png ou .pdf"
 )
 certificate_parser.add_argument(
     "tipo",
@@ -35,5 +35,5 @@ certificate_parser.add_argument(
     type=str,
     required=True,
     location='form',
-    help="Data de recebimento no formato YYYY-MM-DD"
+    help="Data de recebimento no formato 2025-05-17"
 )
