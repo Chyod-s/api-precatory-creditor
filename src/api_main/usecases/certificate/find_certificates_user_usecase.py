@@ -10,11 +10,13 @@ class FindCertificatesUserUsecase:
         self.db = db
 
     def execute(self, credor_id: int, tipo: EntityType, origem: DataOrigin, arquivo_url: str, status: DocumentStatus, recebida_em: str):
-        
+        credor_id = int(credor_id)
+
         if not isinstance(credor_id, int):
             raise CustomAPIException("ID do credor deve ser um número inteiro.", 422)
 
-        data_publicacao_date = datetime.strptime(recebida_em, '%d/%m/%Y').date()
+        if recebida_em is not None:
+            data_publicacao_date = datetime.strptime(recebida_em, '%d/%m/%Y').date()
 
         certificates = Certificate.get_all_certificates(
             db=self.db,
@@ -23,7 +25,7 @@ class FindCertificatesUserUsecase:
             origem=origem,
             arquivo_url=arquivo_url,
             status=status,
-            recebida_em=data_publicacao_date
+            recebida_em=data_publicacao_date if recebida_em else None
         )
 
         if not certificates:

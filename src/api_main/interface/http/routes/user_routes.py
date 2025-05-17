@@ -72,7 +72,7 @@ class FindCertificatesUserResource(Resource):
         response, status_code = find_certificates(args)
         return response, status_code
     
-@user_ns.route('/credores')
+@user_ns.route('/buscar-credores')
 class CreditorUserResource(Resource):
     @jwt_required()
     def get(self):
