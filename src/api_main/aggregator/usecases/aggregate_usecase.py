@@ -3,6 +3,7 @@ from src.api_main.usecases.creditor.find_creditor_user_usecase import FindCredit
 from src.api_main.usecases.personal_document.find_personal_document_user_usecase import FindPersonalDocumentUserUseCase
 from src.api_main.usecases.precatory.find_precatory_user_usecase import FindPrecatoryUserUseCase
 from src.api_main.domain.error.exceptions import CustomAPIException
+import src.api_main.utils.aggregated_serialize as serialize
 
 class AggregateUseCase:
     def __init__(self, db):
@@ -58,4 +59,5 @@ class AggregateUseCase:
         except CustomAPIException as e:
             aggregated_data["errors"].append(f"Erro ao buscar certidões: {str(e)}")
 
-        return aggregated_data
+        return serialize.aggregated_serialize(aggregated_data)
+    
