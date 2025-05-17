@@ -23,14 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const data = await response.json();
       console.log('Login bem-sucedido:', data);
-
-      await fetch('/auth/session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ user: data })
-      });
+      
+    // Aqui você pode armazenar o token de autenticação ou os dados do usuário
+    //   await fetch('/auth/session', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ user: data })
+    //   });
 
       window.location.href = '/home';
     } catch (error) {
