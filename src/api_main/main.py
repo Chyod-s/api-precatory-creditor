@@ -1,7 +1,6 @@
 from flask import Flask, render_template, session
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
-from src.api_main.auth import auth
 from src.api_main.infraestructure.database import init_db, engine
 from src.api_main.config import Config
 from src.api_main.interface.http import user_ns
@@ -25,15 +24,12 @@ api.init_app(app)
 
 jwt = JWTManager(app)
 
-app.register_blueprint(auth)
-
-
 @app.route('/home')
 def home():
     if 'user' in session:
-        return render_template('pages/login.html')
-    else:
         return render_template('pages/dashboard.html')
+    else:
+        return render_template('pages/login.html')
 
 init_db(engine)
 
