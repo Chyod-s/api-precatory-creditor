@@ -30,17 +30,17 @@ class Certificate(BaseModel):
         try:
             query = db.query(cls)
 
-            if credor_id:
+            if credor_id is not None:
                 query = query.filter(cls.credor_id == credor_id)
-            if tipo:
+            if tipo is not None:
                 query = query.filter(cls.tipo == tipo)
-            if origem:
+            if origem is not None:
                 query = query.filter(cls.origem == origem)
-            if arquivo_url:
+            if arquivo_url is not None:
                 query = query.filter(cls.arquivo_url == arquivo_url)
-            if status:
+            if status is not None:
                 query = query.filter(cls.status == status)
-            if recebida_em:
+            if recebida_em is not None:
                 query = query.filter(cls.recebida_em == recebida_em)
 
             certificates = query.all()

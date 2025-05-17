@@ -3,7 +3,7 @@ from enum import Enum
 def serialize_certificate(certificate):
     def enum_to_str(value):
         if isinstance(value, Enum):
-            return value.value  # pega o valor interno do enum
+            return value.value  
         return str(value)
 
     def shorten_url(url, max_length=40):
