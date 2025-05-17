@@ -7,9 +7,9 @@ from src.api_main.interface.http.controllers.creditor_controller import create_c
 from src.api_main.interface.http.controllers.user_controller import create_user, get_user
 from flask_jwt_extended import jwt_required
 
-user_ns = Namespace('user', description='Operações relacionadas ao usuário')
+user_ns = Namespace('usuarios', description='Operações relacionadas ao usuário')
 
-@user_ns.route('/user')
+@user_ns.route('/usuarios')
 class UserResource(Resource):
     @user_ns.expect(login_user_parser)
     def get(self):
@@ -23,7 +23,7 @@ class UserResource(Resource):
         response, status_code = create_user(args)
         return response, status_code
 
-    @user_ns.route('/creditor')
+    @user_ns.route('/credores')
     class CreditorResource(Resource):
         @jwt_required()
         @user_ns.expect(creditor_parser)
@@ -45,7 +45,7 @@ class UserResource(Resource):
             response, status_code = create_creditor(combined_args)
             return response, status_code
 
-@user_ns.route('/personal_document')
+@user_ns.route('/documentos')
 class PersonalDocumentResource(Resource):
     @jwt_required()
     @user_ns.expect(personal_document_parser)
@@ -54,7 +54,7 @@ class PersonalDocumentResource(Resource):
         response, status_code = create_personal_document(args)
         return response, status_code
 
-@user_ns.route('/certificate')
+@user_ns.route('/certidoes')
 class CertificateResource(Resource):
     @jwt_required()
     @user_ns.expect(certificate_parser)
