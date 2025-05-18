@@ -18,32 +18,5 @@
     </form>
     <p id="message" class="mt-4 text-center text-red-600"></p>
 </div>
-
-<script>
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const username = e.target.username.value;
-    const password = e.target.password.value;
-
-    const query = new URLSearchParams({ username, password }).toString();
-
-    const res = await fetch(`/usuarios?${query}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    });
-
-    const data = await res.json();
-
-    const msgEl = document.getElementById('message');
-    if (res.ok) {
-        msgEl.style.color = 'green';
-        msgEl.textContent = data.message;
-        setTimeout(() => { window.location.href = '/dashboard'; }, 1000);
-    } else {
-        msgEl.style.color = 'red';
-        msgEl.textContent = data.message;
-    }
-});
-</script>
+<script src="./../../static/js/login/scripts.js"></script>
 {% endblock %}

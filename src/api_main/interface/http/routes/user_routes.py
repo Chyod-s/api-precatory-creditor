@@ -9,41 +9,43 @@ from flask_jwt_extended import jwt_required
 
 user_ns = Namespace('usuarios', description='Operações relacionadas ao usuário')
 
-@user_ns.route('/usuarios')
-class UserResource(Resource):
-    @user_ns.expect(login_user_parser)
-    def get(self):
+@user_ns.route('/login-usuarios')
+@user_ns.expect(login_user_parser)
+class LoginUserResource(Resource):
+    def post(self):
         args = login_user_parser.parse_args()
-        response, status_code = get_user(args)
-        return response, status_code
+        response = get_user(args)
+        return response
 
+@user_ns.route('/create-usuarios')
+class CreateUserResource(Resource):
     @user_ns.expect(create_user_parser)
     def post(self):
         args = create_user_parser.parse_args()
         response, status_code = create_user(args)
         return response, status_code
 
-    @user_ns.route('/credores')
-    class CreditorResource(Resource):
-        @jwt_required()
-        @user_ns.expect(creditor_parser)
-        def post(self):
-            args = creditor_parser.parse_args()
+@user_ns.route('/credores')
+class CreditorResource(Resource):
+    @jwt_required()
+    @user_ns.expect(creditor_parser)
+    def post(self):
+        args = creditor_parser.parse_args()
 
-            precatory_data = {
-                "numero_precatorio": args.get("numero_precatorio"),
-                "valor_nominal": args.get("valor_nominal"),
-                "foro": args.get("foro"),
-                "data_publicacao": args.get("data_publicacao"),
-            }
+        precatory_data = {
+            "numero_precatorio": args.get("numero_precatorio"),
+            "valor_nominal": args.get("valor_nominal"),
+            "foro": args.get("foro"),
+            "data_publicacao": args.get("data_publicacao"),
+        }
 
-            for key in precatory_data.keys():
-                args.pop(key, None)
+        for key in precatory_data.keys():
+            args.pop(key, None)
 
-            combined_args = {**args, "precatorio": precatory_data}
+        combined_args = {**args, "precatorio": precatory_data}
 
-            response, status_code = create_creditor(combined_args)
-            return response, status_code
+        response, status_code = create_creditor(combined_args)
+        return response, status_code
 
 @user_ns.route('/documentos')
 class PersonalDocumentResource(Resource):
