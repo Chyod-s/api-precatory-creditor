@@ -13,7 +13,7 @@ class CreatePrecatoryUseCase:
         if not isinstance(valor_nominal, (int, float)):
             raise CustomAPIException("Valor nominal deve ser um número", 422)
 
-        data_publicacao_date = datetime.strptime(data_publicacao, '%Y-%m-%d').date()
+        data_publicacao_date = datetime.strptime(data_publicacao, '%d/%m/%Y').date()
 
         new_precatory = Precatory(
             numero_precatorio=numero_precatorio,
