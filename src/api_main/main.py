@@ -1,9 +1,8 @@
 import sys
 import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from flask import Flask, redirect, render_template, session, url_for
+from src.api_main.utils.login_required_util import login_required
+from src.api_main.utils.auth_utils import validate_jwt_token
+from flask import Flask, redirect, render_template, request, session, url_for
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from src.api_main.infraestructure.database import init_db, engine
@@ -11,6 +10,8 @@ from src.api_main.config import Config
 from src.api_main.interface.http import user_ns
 from src.api_main.interface.http.swagger_config import api
 import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 load_dotenv()
 
@@ -32,23 +33,25 @@ jwt = JWTManager(app)
 
 @app.route('/home')
 def home():
-    print(f"Home - Sessão: {session}") 
-    if 'user' in session:
-        return redirect(url_for('dashboard_route'))  
-       
-    return render_template('pages/login.html')  
+    token = request.cookies.get('auth_token')
+    
+    if token and validate_jwt_token(token): 
+        return redirect(url_for('dashboard'))
+    
+    return render_template('pages/login.html') 
         
-
 @app.route('/logout')
 def logout():
-    session.clear()  
-    session.modified = True  
-    return redirect(url_for('home'))
-
+    response = redirect(url_for('home'))
+    response.set_cookie('auth_token', '', max_age=0)
+    return response
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     return render_template('pages/dashboard.html')
+
+
 
 init_db(engine)
 
