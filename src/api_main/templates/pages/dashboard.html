@@ -22,8 +22,10 @@
             <label for="telefone" class="block text-gray-700">Telefone:</label>
             <input type="text" id="telefone" name="telefone" class="w-full p-2 border rounded">
         </div>
-        <button type="submit" class="w-full p-2 bg-green-500 text-white rounded">Cadastrar</button>
-        <button id="logout" type="submit" class="w-full p-2 bg-blue-500 text-white rounded">Sair</button>
+        <div class="flex w-full gap-5">
+            <button type="button" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Cadastrar</button>
+            <button id="logout" type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Sair</button>
+        </div>
     </form>
     <p id="message" class="mt-4 text-center text-red-600"></p>
 </div>
