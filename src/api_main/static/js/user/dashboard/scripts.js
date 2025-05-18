@@ -9,7 +9,7 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
 
     const form = e.target;
     const msgEl = document.getElementById('message');
-    const token = sessionStorage.getItem('access_token');
+    const token = sessionStorage.getItem('auth_token');
 
     console.log("Token:", token);
 

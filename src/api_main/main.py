@@ -38,10 +38,13 @@ jwt = JWTManager(app)
 @app.route('/home')
 def home():
     token = request.cookies.get('auth_token')
+    print(f"Token recebido no /home: {token}")
     
-    if token and validate_jwt_token(token): 
+    if token and validate_jwt_token(token):
+        print("Token válido, redirecionando para dashboard")
         return redirect(url_for('dashboard'))
     
+    print("Token inválido ou não encontrado, redirecionando para login")
     return render_template('pages/login.html') 
         
 @app.route('/logout')

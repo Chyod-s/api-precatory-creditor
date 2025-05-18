@@ -20,12 +20,12 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         const responseData = await res.json();
         
         if (res.ok) {
-            localStorage.setItem('auth_token', responseData.data.token);
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message;
 
             if (responseData?.data?.user_name) {
-                sessionStorage.setItem('user_name', responseData.data.user_name);;
+                sessionStorage.setItem('user_name', responseData.data.user_name);
+                sessionStorage.setItem('auth_token', responseData.data.token);
             }
 
             setTimeout(() => {

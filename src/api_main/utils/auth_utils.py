@@ -3,12 +3,13 @@ import jwt
 
 from src.api_main.config import Config
 
-lol = Config()
+config = Config()
 
-SECRET_KEY = lol.JWT_SECRET_KEY
+SECRET_KEY = config.JWT_SECRET_KEY
 
 def validate_jwt_token(token):
     try:
+        print(f"Validando token: {token}")
         now = datetime.now(timezone.utc)
         print(f"Validando token no servidor - now (UTC): {now}")
         payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
