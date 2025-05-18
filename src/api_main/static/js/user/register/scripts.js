@@ -1,4 +1,3 @@
-// Script corrigido para cadastro
 document.getElementById('back-link').addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = '/home';

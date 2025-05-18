@@ -6,14 +6,31 @@ class CreatePrecatoryUseCase:
     def __init__(self, db):
         self.db = db
 
-    def execute(self, numero_precatorio: str, valor_nominal: float, foro: str, data_publicacao: str, credor_id: int):
-        if not all([numero_precatorio, valor_nominal, foro, data_publicacao]):
-            raise CustomAPIException("dados inválidos", 422)
+    def execute(self, numero_precatorio: str, valor_nominal, foro: str, data_publicacao, credor_id: int):
+        if not numero_precatorio:
+            raise CustomAPIException("Número do precatório é obrigatório.", 422)
+
+        if isinstance(valor_nominal, str):
+            try:
+                valor_nominal = float(valor_nominal.replace(',', '.'))
+            except ValueError:
+                raise CustomAPIException("Valor nominal deve ser um número válido.", 422)
 
         if not isinstance(valor_nominal, (int, float)):
-            raise CustomAPIException("Valor nominal deve ser um número", 422)
+            raise CustomAPIException("Valor nominal deve ser um número.", 422)
 
-        data_publicacao_date = datetime.strptime(data_publicacao, '%d/%m/%Y').date()
+        if isinstance(data_publicacao, str):
+            try:
+                data_publicacao_date = datetime.strptime(data_publicacao, '%d-%m-%Y').date()
+            except ValueError:
+                raise CustomAPIException("Data de publicação deve estar no formato DD-MM-YYY.", 422)
+        elif isinstance(data_publicacao, datetime):
+            data_publicacao_date = data_publicacao.date()
+        else:
+            raise CustomAPIException("Data de publicação inválida.", 422)
+            
+        if not foro:
+            raise CustomAPIException("Foro é obrigatório.", 422)
 
         new_precatory = Precatory(
             numero_precatorio=numero_precatorio,
@@ -28,4 +45,3 @@ class CreatePrecatoryUseCase:
         self.db.refresh(new_precatory)
 
         return {"precatory_id": new_precatory.id}
-    

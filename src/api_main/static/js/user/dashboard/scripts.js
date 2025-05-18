@@ -25,8 +25,11 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
     data.append('numero_precatorio', form.numero_precatorio.value || 0);
     data.append('valor_nominal', form.valor_nominal.value || 0);
     data.append('foro', form.foro.value || 'TJSP');
-    data.append('data_publicacao', form.data_publicacao.value || '2023-10-01');
-
+    data.append('data_publicacao', form.data_publicacao.value || '01/01/2000');
+    
+    console.log("Formulário enviado!");
+    console.log("Token:", token);
+    
     try {
         const res = await fetch('/api/credores', {
             method: 'POST',
@@ -35,7 +38,9 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
             },
             credentials: 'include',
             body: data
-        });
+        }).then(response => response.json())
+            .then(data => console.log('Success:', data))
+            .catch(error => console.error('Erro:', error));
 
         const responseData = await res.json();
 
