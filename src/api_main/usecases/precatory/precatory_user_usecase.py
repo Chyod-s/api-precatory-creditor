@@ -7,6 +7,7 @@ class CreatePrecatoryUseCase:
         self.db = db
 
     def execute(self, numero_precatorio: str, valor_nominal, foro: str, data_publicacao, credor_id: int):
+  
         if not numero_precatorio:
             raise CustomAPIException("Número do precatório é obrigatório.", 422)
 
@@ -19,11 +20,17 @@ class CreatePrecatoryUseCase:
         if not isinstance(valor_nominal, (int, float)):
             raise CustomAPIException("Valor nominal deve ser um número.", 422)
 
-        if isinstance(data_publicacao, str):
+        if "-" in data_publicacao:
             try:
                 data_publicacao_date = datetime.strptime(data_publicacao, '%d-%m-%Y').date()
+                print(f"A data está no formato correto: {data_publicacao_date.strftime('%d/%m/%Y')}")
             except ValueError:
-                raise CustomAPIException("Data de publicação deve estar no formato DD-MM-YYY.", 422)
+                try:
+                    data_publicacao_date = datetime.strptime(data_publicacao, '%Y-%m-%d').date()
+                    print(f"A data está no formato correto: {data_publicacao_date.strftime('%d/%m/%Y')}")
+                except ValueError:
+                    print("A data NÃO está em um formato válido.")
+      
         elif isinstance(data_publicacao, datetime):
             data_publicacao_date = data_publicacao.date()
         else:
