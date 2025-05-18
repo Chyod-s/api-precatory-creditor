@@ -4,6 +4,11 @@
 
 {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
-    
+    <h2 class="text-2xl font-bold mb-4 flex items-center justify-center">Dashboard</h2>
+    <p class="text-center text-gray-700 mb-4">Bem-vindo ao painel de controle!</p>
+    <form id="login-form">
+        <button id="logout" type="submit" class="w-full p-2 bg-blue-500 text-white rounded">Sair</button>
+    </form>
 </div>
+<script src="./../../static/js/user/dashboard/scripts.js"></script>
 {% endblock %}
