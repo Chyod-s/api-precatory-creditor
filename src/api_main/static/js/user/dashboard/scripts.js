@@ -1,8 +1,3 @@
-function getAuthToken() {
-    const cookies = document.cookie.split('; ');
-    const authToken = cookies.find(cookie => cookie.startsWith('auth_token='));
-    return authToken ? authToken.split('=')[1] : null;
-}
 
 document.getElementById('logout').addEventListener('click', (e) => {
     e.preventDefault();
@@ -14,7 +9,15 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
 
     const form = e.target;
     const msgEl = document.getElementById('message');
-    const token = localStorage.getItem('auth_token');
+    const token = sessionStorage.getItem('access_token');
+
+    console.log("Token:", token);
+
+    if (!token) {
+        msgEl.style.color = 'red';
+        msgEl.textContent = 'Token de autenticação não encontrado.';
+        return;
+    }
 
     const data = new FormData();
     data.append('nome', form.nome.value);
@@ -27,9 +30,6 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
     data.append('foro', form.foro.value || 'TJSP');
     data.append('data_publicacao', form.data_publicacao.value || '01/01/2000');
     
-    console.log("Formulário enviado!");
-    console.log("Token:", token);
-    
     try {
         const res = await fetch('/api/credores', {
             method: 'POST',
@@ -38,9 +38,7 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
             },
             credentials: 'include',
             body: data
-        }).then(response => response.json())
-            .then(data => console.log('Success:', data))
-            .catch(error => console.error('Erro:', error));
+        })
 
         const responseData = await res.json();
 

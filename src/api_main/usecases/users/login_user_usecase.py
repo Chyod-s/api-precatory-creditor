@@ -1,3 +1,4 @@
+from src.api_main.infraestructure.handler.jwt_handler import generate_token
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.users_model import User
 from flask_jwt_extended import create_access_token
@@ -17,7 +18,7 @@ class LoginUserUseCase:
         if not user.check_password(user.password,password):
             raise CustomAPIException("Senha inválida.", 422)
 
-        token = create_access_token(identity=str(user.id)) 
+        token = generate_token(user.id) 
 
         if not token:
             raise ValueError("Erro ao gerar o token.")

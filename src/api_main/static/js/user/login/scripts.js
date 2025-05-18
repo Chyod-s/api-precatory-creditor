@@ -18,8 +18,9 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         });
 
         const responseData = await res.json();
-
+        
         if (res.ok) {
+            localStorage.setItem('auth_token', responseData.data.token);
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message;
 

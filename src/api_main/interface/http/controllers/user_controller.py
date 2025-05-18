@@ -28,7 +28,8 @@ def get_user(data):
                 "status": "success",
                 "message": "Usuário encontrado com sucesso!",
                 "data": {
-                    "user_name": result["user_name"]
+                    "user_name": result["user_name"],
+                    "token": result["token"]
                 }
             }
         

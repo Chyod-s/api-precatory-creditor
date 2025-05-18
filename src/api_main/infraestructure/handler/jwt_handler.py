@@ -2,13 +2,13 @@ from zoneinfo import ZoneInfo
 import jwt
 from datetime import datetime, timedelta
 from src.api_main.config import Config
+import pytz
 
-campo_grande_tz = ZoneInfo("America/Campo_Grande")
+campo_grande_tz = pytz.timezone('America/Campo_Grande')
 
 def generate_token(user_id: int):
-    now_cg = datetime.now(tz=campo_grande_tz)
-    now_utc = now_cg.astimezone(ZoneInfo("UTC"))
-    
+    now_utc = datetime.now(tz=pytz.utc)
+
     payload = {
         'user_id': user_id,
         'iat': now_utc,
