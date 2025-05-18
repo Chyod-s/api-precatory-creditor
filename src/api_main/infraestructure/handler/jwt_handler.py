@@ -1,3 +1,4 @@
+import uuid
 import jwt
 from datetime import datetime, timedelta, timezone
 from src.api_main.config import Config
@@ -5,9 +6,13 @@ from src.api_main.config import Config
 def generate_token(user_id: int):
     now_utc = datetime.now(timezone.utc)
     payload = {
-        'user_id': user_id,
-        'iat': int(now_utc.timestamp()),
-        'exp': int((now_utc + timedelta(seconds=Config.JWT_EXP_DELTA_SECONDS)).timestamp()),
+        'sub': str(user_id),  
+        'iat': int(now_utc.timestamp()),  
+        'exp': int((now_utc + timedelta(seconds=Config.JWT_EXP_DELTA_SECONDS)).timestamp()),  
+        'jti': str(uuid.uuid4()),  
+        'type': 'access',  
+        'nbf': int(now_utc.timestamp()),  
+        'csrf': str(uuid.uuid4()) 
     }
     token = jwt.encode(payload, Config.JWT_SECRET, algorithm=Config.JWT_ALGORITHM)
     return token
