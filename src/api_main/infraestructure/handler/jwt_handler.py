@@ -14,6 +14,7 @@ def generate_token(user_id: int):
         'iat': now_utc,
         'exp': now_utc + timedelta(seconds=Config.JWT_EXP_DELTA_SECONDS),
     }
+
     token = jwt.encode(payload, Config.JWT_SECRET, algorithm=Config.JWT_ALGORITHM)
     return token
 
