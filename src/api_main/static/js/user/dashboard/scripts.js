@@ -14,7 +14,7 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
 
     const form = e.target;
     const msgEl = document.getElementById('message');
-    const token = getAuthToken();
+    const token = localStorage.getItem('auth_token');
 
     const data = new FormData();
     data.append('nome', form.nome.value);

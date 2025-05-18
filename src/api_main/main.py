@@ -1,3 +1,4 @@
+from datetime import timedelta
 import sys
 import os
 from src.api_main.utils.login_required_util import login_required
@@ -23,6 +24,7 @@ app = Flask(__name__,
             template_folder='templates')
 
 CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "http://localhost:5000"}})
+
 app.secret_key = secret_key
 
 app.config.from_object(Config)
