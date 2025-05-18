@@ -17,7 +17,7 @@ class LoginUserResource(Resource):
         response = get_user(args)
         return response
 
-@user_ns.route('/create-usuarios')
+@user_ns.route('/register-usuarios')
 class CreateUserResource(Resource):
     @user_ns.expect(create_user_parser)
     def post(self):

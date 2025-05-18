@@ -40,3 +40,8 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         msgEl.textContent = 'Erro de conexão com o servidor.';
     }
 });
+
+document.getElementById('register-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = '/register';
+});
