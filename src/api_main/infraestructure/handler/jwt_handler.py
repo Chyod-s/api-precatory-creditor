@@ -1,22 +1,17 @@
-from zoneinfo import ZoneInfo
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from src.api_main.config import Config
-import pytz
-
-campo_grande_tz = pytz.timezone('America/Campo_Grande')
 
 def generate_token(user_id: int):
-    now_utc = datetime.now(tz=pytz.utc)
-
+    now_utc = datetime.now(timezone.utc)
     payload = {
         'user_id': user_id,
-        'iat': now_utc,
-        'exp': now_utc + timedelta(seconds=Config.JWT_EXP_DELTA_SECONDS),
+        'iat': int(now_utc.timestamp()),
+        'exp': int((now_utc + timedelta(seconds=Config.JWT_EXP_DELTA_SECONDS)).timestamp()),
     }
-
     token = jwt.encode(payload, Config.JWT_SECRET, algorithm=Config.JWT_ALGORITHM)
     return token
+
 
 def decode_token(token: str):
     try:

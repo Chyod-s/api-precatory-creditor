@@ -30,6 +30,12 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
     data.append('foro', form.foro.value || 'TJSP');
     data.append('data_publicacao', form.data_publicacao.value || '01/01/2000');
     
+    const obj = {};
+    data.forEach((value, key) => {
+    obj[key] = value;
+    });
+    console.log(obj);
+
     try {
         const res = await fetch('/api/credores', {
             method: 'POST',
@@ -41,6 +47,8 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
         })
 
         const responseData = await res.json();
+
+        console.log("Response data:", responseData);
 
         if (res.ok) {
             msgEl.style.color = 'green';
