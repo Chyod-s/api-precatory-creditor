@@ -44,13 +44,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         const responseData = await res.json();
-
+        
+        console.log(responseData);
+        
         if (Array.isArray(responseData)) {
             selectEl.innerHTML = responseData.map(doc => `
-                <option id="${doc.id}">${doc.nome}</option>
+                <option value="${doc.id}">${doc.nome}</option>
             `).join('');
         } else if (responseData && responseData.nome) {
-            selectEl.innerHTML = `<option id="${responseData.id}">${responseData.nome}</option>`;
+            selectEl.innerHTML = `<option value="${responseData.id}">${responseData.nome}</option>`;
         } else {
             selectEl.innerHTML = '<option>Sem dados</option>';
         }
