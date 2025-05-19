@@ -73,10 +73,10 @@ def documentos():
 def precatorio():
     return render_template('pages/precatorio.html')
 
-@app.route('/certificados')
+@app.route('/certidao')
 @login_required
 def precatocertificadosrio():
-    return render_template('pages/certificados.html')
+    return render_template('pages/certidao.html')
 
 @app.route('/register')
 def register():

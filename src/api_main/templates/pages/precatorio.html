@@ -4,7 +4,14 @@
 
 {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md text-black">
-    <h2 class="text-2xl font-bold mb-4 flex items-center justify-center">Cadastro de Precatório</h2>
+    
+    <div class="flex items-center gap-17 mb-2">
+        <h2 class="text-2xl font-bold">Cadastro de Precatório</h2>
+        <select name="" id="op-credor" class="w-18 h-10">
+            
+        </select>
+    </div>
+
     <form id="precatory-form" method="POST" action="/api/precatories" enctype="application/x-www-form-urlencoded">
         
         <div class="mb-4">  
