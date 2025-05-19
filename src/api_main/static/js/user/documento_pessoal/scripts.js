@@ -13,8 +13,12 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
     const ano = day.getUTCFullYear();
     const dataFormatada = `${dia}/${mes}/${ano}`;
 
-    const formData = new FormData();
-    formData.append('credor_id', '2');    
+    const credor_id = document.getElementById('op-credor').value;
+
+    console.log('Credor ID:', credor_id);   
+
+    const formData = new FormData();        
+    formData.append('credor_id', credor_id);    
     formData.append('tipo', type);
     formData.append('arquivo_url', file); 
     formData.append('enviado_em', dataFormatada);
