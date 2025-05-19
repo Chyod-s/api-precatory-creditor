@@ -12,7 +12,7 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
     const mes = String(day.getUTCMonth() + 1).padStart(2, '0');
     const ano = day.getUTCFullYear();
     const dataFormatada = `${dia}/${mes}/${ano}`;
-
+    
     const credor_id = document.getElementById('op-credor').value;
   
     const formData = new FormData();        

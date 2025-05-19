@@ -47,8 +47,6 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
 
         const responseData = await res.json();
 
-        console.log("Response data:", responseData);
-
         if (res.ok) {
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message || 'Credor cadastrado com sucesso!';
