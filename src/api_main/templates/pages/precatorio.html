@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Cadastro de Precatório - Mercatório{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md text-black">
+    <h2 class="text-2xl font-bold mb-4 flex items-center justify-center">Cadastro de Precatório</h2>
+    <form id="precatory-form" method="POST" action="/api/precatories" enctype="application/x-www-form-urlencoded">
+        <div class="mb-4">
+            <label for="credor_id" class="block text-gray-700">ID do Credor:</label>
+            <input type="number" id="credor_id" name="credor_id" class="w-full p-2 border rounded" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="numero_precatorio" class="block text-gray-700">Número do Precatório:</label>
+            <input type="text" id="numero_precatorio" name="numero_precatorio" class="w-full p-2 border rounded" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="valor_nominal" class="block text-gray-700">Valor Nominal:</label>
+            <input type="number" step="0.01" id="valor_nominal" name="valor_nominal" class="w-full p-2 border rounded" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="foro" class="block text-gray-700">Foro:</label>
+            <input type="text" id="foro" name="foro" class="w-full p-2 border rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="data_publicacao" class="block text-gray-700">Data de Publicação:</label>
+            <input type="date" id="data_publicacao" name="data_publicacao" class="w-full p-2 border rounded">
+        </div>
+
+        <div class="flex w-full gap-5">
+            <button type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Cadastrar</button>
+            <button id="logout" type="button" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Sair</button>
+        </div>
+    </form>
+
+    <p id="message" class="mt-4 text-center text-red-600"></p>
+</div>
+
+<script src="./../../static/js/user/dashboard/scripts.js"></script>
+{% endblock %}

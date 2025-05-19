@@ -59,8 +59,17 @@ def dashboard():
     return render_template('pages/dashboard.html')
 
 @app.route('/credor')
+@login_required
 def credor():
     return render_template('pages/credor.html')
+
+@app.route('/documentos')
+def documentos():
+    return render_template('pages/documentos_pessoal.html')
+
+@app.route('/precatorio')
+def precatorio():
+    return render_template('pages/precatorio.html')
 
 @app.route('/register')
 def register():
