@@ -14,9 +14,7 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
     const dataFormatada = `${dia}/${mes}/${ano}`;
 
     const credor_id = document.getElementById('op-credor').value;
-
-    console.log('Credor ID:', credor_id);   
-
+  
     const formData = new FormData();        
     formData.append('credor_id', credor_id);    
     formData.append('tipo', type);
