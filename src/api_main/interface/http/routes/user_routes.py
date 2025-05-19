@@ -87,3 +87,4 @@ class UserResource(Resource):
     def get(self, user_id): 
         response, status_code = get_creditor(user_id)
         return response, status_code
+    

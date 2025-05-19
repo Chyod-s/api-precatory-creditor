@@ -28,3 +28,4 @@ class FindCreditorUserUseCase:
         
         except Exception as e:
             raise CustomAPIException(f"Error retrieving creditor: {str(e)}", 500)
+        

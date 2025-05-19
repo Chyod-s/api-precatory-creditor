@@ -49,7 +49,13 @@ def get_creditor(user_id):
         if not result:
             raise CustomAPIException("Credores não encontrados.", 404)
             
-        return jsonify(result), 200
+        return creditor_to_dict(result), 200
     
     except CustomAPIException as e:
         return e.to_dict(), e.status_code
+
+def creditor_to_dict(creditor):
+    return {
+        "id": creditor.id,
+        "nome": creditor.nome
+    }

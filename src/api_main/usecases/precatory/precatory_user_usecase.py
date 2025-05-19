@@ -7,7 +7,8 @@ class CreatePrecatoryUseCase:
         self.db = db
 
     def execute(self, numero_precatorio: str, valor_nominal, foro: str, data_publicacao, credor_id: int):
-  
+        data_publicacao_date = None
+        
         if not numero_precatorio:
             raise CustomAPIException("Número do precatório é obrigatório.", 422)
 
