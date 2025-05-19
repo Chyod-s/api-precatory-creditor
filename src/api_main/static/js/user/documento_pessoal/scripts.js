@@ -14,11 +14,11 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
     const dataFormatada = `${dia}/${mes}/${ano}`;
 
     const formData = new FormData();
-    formData.append('credor_id', '1');    
+    formData.append('credor_id', '2');    
     formData.append('tipo', type);
     formData.append('arquivo_url', file); 
     formData.append('enviado_em', dataFormatada);
-
+    
     try {
         const res = await fetch('/api/documentos', {
             method: 'POST',

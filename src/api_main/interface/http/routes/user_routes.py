@@ -81,8 +81,8 @@ class CreditorUserResource(Resource):
         response, status_code = find_aggregate()
         return response, status_code
 
-@user_ns.route('/buscar-usuarios/<int:user_id>')
-class UserResource(Resource):
+@user_ns.route('/buscar-credores-by-id/<int:user_id>')
+class GetCreditorUserResource(Resource):
     @jwt_required()
     def get(self, user_id): 
         response, status_code = get_creditor(user_id)
