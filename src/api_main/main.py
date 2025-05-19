@@ -58,6 +58,10 @@ def logout():
 def dashboard():
     return render_template('pages/dashboard.html')
 
+@app.route('/credor')
+def credor():
+    return render_template('pages/credor.html')
+
 @app.route('/register')
 def register():
     return render_template('pages/register.html')
