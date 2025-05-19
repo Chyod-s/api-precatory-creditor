@@ -23,8 +23,8 @@ def decode_token(token: str):
         payload = jwt.decode(token, Config.JWT_SECRET, algorithms=[Config.JWT_ALGORITHM], leeway=10)
         user_id = payload['sub']
         
-        if user_id == "1":
-            raise Exception("Acesso negado para este usuário.")
+        # if user_id == "1":
+        #     raise Exception("Acesso negado para este usuário.")
         
         return user_id
     except jwt.ExpiredSignatureError:
