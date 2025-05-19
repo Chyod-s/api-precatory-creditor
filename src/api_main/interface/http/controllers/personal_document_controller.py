@@ -42,7 +42,7 @@ def create_personal_document(data):
         
         use_case = PersonalDocumentUserUseCase(db)
         result = use_case.execute(
-            credor_id=creditor.id,
+            credor_id=int(data.get('credor_id')),
             tipo=data.get('tipo'),
             arquivo_url=encoded_string,
             enviado_em=data.get('enviado_em')
