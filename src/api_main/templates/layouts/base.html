@@ -11,19 +11,18 @@
     <title>Backend-Challenge</title>
     </head>
     <body class="bg-black text-white m-0 p-0 font-sans">
-    <header class="grid grid-cols-4 gap-2 bg-gray-200 w-full h-15 text-black font-bold">
-        <nav class="flex items-center justify-center" aria-label="Menu principal">
-        <a href="/credor" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Credor</a>
+    <header class="grid grid-cols-4 gap-2 bg-gray-200 w-full h-16 text-black font-bold">
+        <nav id="logged-in-menu" style="display:none;" class="flex items-center justify-center gap-4" aria-label="Menu principal">
+            <a href="/credor" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Credor</a>
+            <a href="/documentos" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Documentos Pessoal</a>
+            <a href="/precatorio" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Precatório</a>
+            <a href="/certificados" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Certificados</a>
         </nav>
-        <nav class="flex items-center justify-center" aria-label="Documento pessoal">
-        <a href="/documentos" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Documentos Pessoal</a>
+
+        <nav id="logged-out-menu" class="flex items-center justify-center gap-4" aria-label="Menu principal">
+
         </nav>
-        <nav class="flex items-center justify-center" aria-label="Certificador">
-        <a href="/precatorio" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Precatório</a>
-        </nav>
-        <nav class="flex items-center justify-center" aria-label="Credor">
-        <a href="/certificados" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Certificados</a>
-        </nav>
+
     </header>
 
     <h1 class="pl-5 p-1 mt-6 text-3xl font-bold flex items-center justify-center">

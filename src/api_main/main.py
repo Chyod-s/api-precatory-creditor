@@ -64,14 +64,17 @@ def credor():
     return render_template('pages/credor.html')
 
 @app.route('/documentos')
+@login_required
 def documentos():
     return render_template('pages/documentos_pessoal.html')
 
 @app.route('/precatorio')
+@login_required
 def precatorio():
     return render_template('pages/precatorio.html')
 
 @app.route('/certificados')
+@login_required
 def precatocertificadosrio():
     return render_template('pages/certificados.html')
 

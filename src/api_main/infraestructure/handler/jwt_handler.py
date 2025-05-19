@@ -21,8 +21,14 @@ def generate_token(user_id: int):
 def decode_token(token: str):
     try:
         payload = jwt.decode(token, Config.JWT_SECRET, algorithms=[Config.JWT_ALGORITHM], leeway=10)
-        return payload['user_id']
+        user_id = payload['sub']
+        
+        if user_id == "1":
+            raise Exception("Acesso negado para este usuário.")
+        
+        return user_id
     except jwt.ExpiredSignatureError:
         raise Exception('Token expirado, faça login novamente.')
     except jwt.InvalidTokenError:
         raise Exception('Token inválido, faça login novamente.')
+    
