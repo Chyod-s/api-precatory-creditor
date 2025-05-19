@@ -19,11 +19,16 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
     data.append('email', form.email.value);
     data.append('telefone', form.telefone.value);
 
-    data.append('numero_precatorio', form.numero_precatorio.value || 0);
-    data.append('valor_nominal', form.valor_nominal.value || 0);
-    data.append('foro', form.foro.value || 'TJSP');
-    data.append('data_publicacao', form.data_publicacao.value || '01/01/2000');
-    
+    const appendIfExists = (fieldName, fallback = '') => {
+        const input = form.querySelector(`[name="${fieldName}"]`);
+        data.append(fieldName, input ? input.value : fallback);
+    };
+
+    appendIfExists('numero_precatorio', 0);
+    appendIfExists('valor_nominal', 0);
+    appendIfExists('foro', 'TJSP');
+    appendIfExists('data_publicacao', '2000-01-01');
+
     const obj = {};
     data.forEach((value, key) => {
     obj[key] = value;
