@@ -16,3 +16,15 @@ class FindCreditorUserUseCase:
         
         except Exception as e:
             raise CustomAPIException(f"Error retrieving creditors: {str(e)}", 500)
+    
+    def get_creditor_by_id(self, creditor_id):
+        try:
+            creditor = Creditor.get_by_id(self.db, creditor_id)
+
+            if not creditor:
+                raise CustomAPIException("Credor não encontrado.", 404)
+                
+            return creditor
+        
+        except Exception as e:
+            raise CustomAPIException(f"Error retrieving creditor: {str(e)}", 500)

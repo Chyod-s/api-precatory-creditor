@@ -1,5 +1,6 @@
 from flask import jsonify, request
 from flask_jwt_extended import get_jwt_identity
+from src.api_main.usecases.creditor.find_creditor_user_usecase import FindCreditorUserUseCase
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.usecases.precatory.precatory_user_usecase import CreatePrecatoryUseCase
 from src.api_main.usecases.creditor.create_user_usecase import CreateUserUseCase
@@ -36,4 +37,19 @@ def create_creditor(data):
     
     except CustomAPIException as e:
         return e.to_dict(), e.status_code
+
+def get_creditor(user_id):
+    db = next(get_db())
+
+    try:
+        use_case = FindCreditorUserUseCase(db)
+        result = use_case.get_creditor_by_id(
+            user_id
+        )        
+        if not result:
+            raise CustomAPIException("Credores não encontrados.", 404)
+            
+        return jsonify(result), 200
     
+    except CustomAPIException as e:
+        return e.to_dict(), e.status_code

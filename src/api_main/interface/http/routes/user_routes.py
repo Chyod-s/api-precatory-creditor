@@ -3,7 +3,7 @@ from src.api_main.interface.http.controllers.aggregate_controller import find_ag
 from src.api_main.interface.http.swagger import certificate_parser, create_user_parser, login_user_parser, creditor_parser, personal_document_parser, find_certificate_parser
 from src.api_main.interface.http.controllers.certificate_controller import certificate_personal_document, find_certificates
 from src.api_main.interface.http.controllers.personal_document_controller import create_personal_document
-from src.api_main.interface.http.controllers.creditor_controller import create_creditor
+from src.api_main.interface.http.controllers.creditor_controller import create_creditor, get_creditor
 from src.api_main.interface.http.controllers.user_controller import create_user, get_user
 from flask_jwt_extended import jwt_required
 
@@ -79,4 +79,11 @@ class CreditorUserResource(Resource):
     @jwt_required()
     def get(self):
         response, status_code = find_aggregate()
+        return response, status_code
+
+@user_ns.route('/buscar-usuarios/<int:user_id>')
+class UserResource(Resource):
+    @jwt_required()
+    def get(self, user_id): 
+        response, status_code = get_creditor(user_id)
         return response, status_code
