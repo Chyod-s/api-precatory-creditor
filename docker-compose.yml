@@ -23,7 +23,7 @@ services:
       - PYTHONPATH=/app
       - DATABASE_URL=postgresql://mercatorio:123@postgres:5432/backendChallenge
     ports:
-      - "5000:5000"
+      - "5055:5000"
 
   api_mock:
     build: .
@@ -33,7 +33,7 @@ services:
     environment:
       - PYTHONPATH=/app
     ports:
-      - "5001:5000"
+      - "5056:5000"
 
 volumes:
   pgdata:
