@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: mercatorio
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: backendChallenge
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api_main:
+    build: .
+    container_name: api_main
+    working_dir: /app/src/api_main
+    command: /entrypoint.sh
+    depends_on:
+      - postgres
+    environment:
+      - PYTHONPATH=/app
+      - DATABASE_URL=postgresql://mercatorio:123@postgres:5432/backendChallenge
+    ports:
+      - "5000:5000"
+
+  api_mock:
+    build: .
+    container_name: api_mock
+    working_dir: /app/src/api_mock
+    command: python -m src.api_mock.main
+    environment:
+      - PYTHONPATH=/app
+    ports:
+      - "5001:5000"
+
+volumes:
+  pgdata:
