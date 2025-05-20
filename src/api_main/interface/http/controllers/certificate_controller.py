@@ -11,14 +11,9 @@ from src.api_main.config import Config
 
 def certificate_personal_document(data):
     db = next(get_db())
-    user_id = get_jwt_identity()
+    credor_id = data["credor_id"]
 
     try:
-
-        creditor = Creditor.get_by_id(db, user_id)
-        if creditor is None:
-            raise CustomAPIException("Credor não encontrado.", 404)
-
         def is_valid_extension(filename):
             return any(filename.lower().endswith(ext) for ext in Config.ALLOWED_EXTENSIONS)
 
@@ -43,7 +38,7 @@ def certificate_personal_document(data):
 
         use_case = CertificateUserUseCase(db)
         result = use_case.execute(
-            credor_id=creditor.id,
+            credor_id=credor_id,
             tipo=data.get('tipo'),
             origem=data.get('origem'),
             arquivo_url=encoded_string,

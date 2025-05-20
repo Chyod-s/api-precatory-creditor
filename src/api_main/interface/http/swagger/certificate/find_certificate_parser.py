@@ -1,5 +1,4 @@
 from flask_restx import reqparse
-from werkzeug.datastructures import FileStorage
 
 find_certificate_parser = reqparse.RequestParser()
 find_certificate_parser.add_argument(

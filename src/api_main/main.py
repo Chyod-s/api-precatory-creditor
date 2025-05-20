@@ -75,8 +75,9 @@ def precatorio():
 
 @app.route('/certidao')
 @login_required
-def precatocertificadosrio():
+def certidao():
     return render_template('pages/certidao.html')
+
 
 @app.route('/register')
 def register():

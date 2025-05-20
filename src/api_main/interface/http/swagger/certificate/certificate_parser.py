@@ -3,6 +3,13 @@ from werkzeug.datastructures import FileStorage
 
 certificate_parser = reqparse.RequestParser()
 certificate_parser.add_argument(
+    "credor_id",
+    type=str,
+    required=True,
+    location='form',
+    help="ID do documento"
+)
+certificate_parser.add_argument(
     "arquivo_url",
     location="files",
     type=FileStorage, 
