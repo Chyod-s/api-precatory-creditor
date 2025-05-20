@@ -1,0 +1,82 @@
+# Precatory Management System
+
+Este projeto é uma API com frontend integrado para gerenciamento de precatórios, credores, certidões e documentos pessoais. Desenvolvido com **Python**, **Flask**, **SQLAlchemy**, **JWT**, **Tailwind CSS** com **Alembic** para versionamento e arquitetura baseada em **Clean Architecture**.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Backend:** Python, Flask, SQLAlchemy, Alembic
+- **Frontend:** Jinja2, Tailwind CSS, JavaScript
+- **Autenticação:** JWT
+- **Banco de Dados:** SQLite (desenvolvimento), com suporte para outros via SQLAlchemy
+- **Task Scheduler:** Agendador customizado com execução via scripts
+- **Containerização:** Docker + Docker Compose
+- **Test:** Pytest
+
+---
+
+## Autenticação
+
+O projeto utiliza **JWT** para autenticação de usuários. As rotas protegidas exigem envio de token no cabeçalho `Authorization`.
+
+---
+Configuração e Execução (Docker)
+
+### Pré-requisitos
+- [Docker `download`](https://www.docker.com/get-started/)
+
+### Instalação manual
+
+```bash
+docker-compose up --build
+```
+
+---
+
+Configuração e Execução (Desenvolvimento)
+
+### Pré-requisitos
+
+- Python 3.10+
+- Docker & Docker Compose (opcional)
+- Node.js (para Tailwind)
+
+### Instalação manual
+
+```bash
+# Crie e ative o ambiente virtual
+python -m venv .venv
+source .venv/bin/activate # no linux  
+.venv\Scripts\Activate.ps1 # no Windows
+
+# Instale as dependências
+pip install -r requirements.txt
+
+# Execute as migrações
+alembic upgrade head
+
+# Inicie a aplicação
+python src/api_main/main.py # api principal
+python src/api_main/main.py # api mockada
+```
+
+## Funcionalidades
+
+- [x] Cadastro e login de usuários
+
+- [x] Registro de credores
+
+- [x] Cadastro de certidões e documentos pessoais
+
+- [x] Consulta de precatórios
+
+- [x] Integração com Swagger para documentação
+
+- [x] Frontend responsivo com Tailwind
+
+- [x] Execução de tarefas automáticas via agendador
+  
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
