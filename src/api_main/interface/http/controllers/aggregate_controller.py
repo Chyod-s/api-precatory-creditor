@@ -1,3 +1,5 @@
+import json
+from flask import jsonify
 from flask_jwt_extended import get_jwt_identity
 from src.api_main.aggregator.usecases.aggregate_usecase import AggregateUseCase
 from src.api_main.domain.error.exceptions import CustomAPIException
@@ -15,10 +17,10 @@ def find_aggregate(user_id):
         if not aggregated_data:
             raise CustomAPIException("Nenhum dado encontrado para o usuário.", 404)
 
-        return {
+        return jsonify({
             "status": "success",
             "data": aggregated_data
-        }, 200
+        }, 200)
 
     except CustomAPIException as e:
         return e.to_dict(), e.status_code

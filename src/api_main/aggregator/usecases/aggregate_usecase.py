@@ -46,9 +46,12 @@ class AggregateUseCase:
                 tipo_name = doc.tipo.name if doc.tipo else None
                 arquivo_url = doc.arquivo_url if doc.arquivo_url else None
                 enviado_em = doc.enviado_em if doc.enviado_em else None
+
+                arquivo_url_slice = (arquivo_url[:25] + "...") if arquivo_url and len(arquivo_url) > 25 else arquivo_url
+
                 result.append({
                     "tipo": tipo_name,
-                    "arquivo_url": arquivo_url,
+                    "arquivo_url": arquivo_url_slice,
                     "enviado_em": enviado_em
                 })
 
@@ -94,10 +97,13 @@ class AggregateUseCase:
                 arquivo_url = doc.arquivo_url if doc.arquivo_url else None
                 status = doc.status.name if doc.status else None
                 recebida_em = doc.recebida_em if doc.recebida_em else None
+
+                arquivo_url_slice = (arquivo_url[:25] + "...") if arquivo_url and len(arquivo_url) > 25 else arquivo_url
+
                 result.append({
                     "tipo": tipo,
                     "origem": origem,
-                    "arquivo_url": arquivo_url,
+                    "arquivo_url": arquivo_url_slice,
                     "status": status,
                     "recebida_em": recebida_em
                 })
