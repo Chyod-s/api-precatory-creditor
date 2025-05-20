@@ -19,7 +19,7 @@ class FindCreditorUserUseCase:
     
     def get_creditor_by_id(self, creditor_id):
         try:
-            creditor = Creditor.get_by_id(self.db, creditor_id)
+            creditor = Creditor.get_by_credor_id(self.db, creditor_id)
 
             if not creditor:
                 raise CustomAPIException("Credor não encontrado.", 404)

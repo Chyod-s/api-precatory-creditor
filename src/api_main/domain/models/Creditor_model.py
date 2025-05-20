@@ -32,6 +32,10 @@ class Creditor(BaseModel):
         return db.query(cls).filter_by(id=credor_id).all()
     
     @classmethod
+    def get_by_credor_id(cls, db, user_id: int):
+        return db.query(cls).filter_by(user_id=user_id).all()
+
+    @classmethod
     def get_all_creditors(cls, db):
         return db.query(cls).all()
     
