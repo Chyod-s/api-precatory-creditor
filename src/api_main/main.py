@@ -1,6 +1,7 @@
 from datetime import timedelta
 import sys
 import os
+from src.api_main.infraestructure.scheduler.task_scheduler import start_scheduler
 from src.api_main.utils.login_required_util import login_required
 from src.api_main.utils.auth_utils import validate_jwt_token
 from flask import Flask, redirect, render_template, request, url_for
@@ -11,7 +12,6 @@ from src.api_main.config import Config
 from src.api_main.interface.http import user_ns
 from src.api_main.interface.http.swagger_config import api
 from flask_cors import CORS
-import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
@@ -34,6 +34,8 @@ api.add_namespace(user_ns)
 api.init_app(app)
 
 jwt = JWTManager(app)
+
+scheduler = start_scheduler()
 
 @app.route('/home')
 def home():
