@@ -75,11 +75,11 @@ class FindCertificatesUserResource(Resource):
         response, status_code = find_certificates(args)
         return response, status_code
     
-@user_ns.route('/buscar-credores')
+@user_ns.route('/creditors/<int:user_id>')
 class CreditorUserResource(Resource):
     @jwt_required()
-    def get(self):
-        response, status_code = find_aggregate()
+    def get(self, user_id):
+        response, status_code = find_aggregate(user_id)
         return response, status_code
 
 @user_ns.route('/buscar-credores-by-id/<int:user_id>')

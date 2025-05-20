@@ -3,10 +3,9 @@ from src.api_main.aggregator.usecases.aggregate_usecase import AggregateUseCase
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.infraestructure.database.engine import get_db
 
-def find_aggregate():
+def find_aggregate(user_id):
     db = next(get_db())
-    user_id = get_jwt_identity()
-
+ 
     try:
         data = {"credor_id": user_id}
 

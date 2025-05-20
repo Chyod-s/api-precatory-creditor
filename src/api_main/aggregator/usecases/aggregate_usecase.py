@@ -1,7 +1,7 @@
-from src.api_main.usecases.certificate.find_certificates_user_usecase import FindCertificatesUserUsecase
-from src.api_main.usecases.creditor.find_creditor_user_usecase import FindCreditorUserUseCase
-from src.api_main.usecases.personal_document.find_personal_document_user_usecase import FindPersonalDocumentUserUseCase
-from src.api_main.usecases.precatory.find_precatory_user_usecase import FindPrecatoryUserUseCase
+from src.api_main.domain.models.certificate_model import Certificate
+from src.api_main.domain.models.precatory_model import Precatory
+from src.api_main.domain.models.personal_document_model import PersonalDocument
+from src.api_main.domain.models.creditor_model import Creditor
 from src.api_main.domain.error.exceptions import CustomAPIException
 import src.api_main.utils.aggregated_serialize as serialize
 
@@ -19,45 +19,92 @@ class AggregateUseCase:
         }
 
         try:
-            creditors = FindCreditorUserUseCase(self.db).execute()
-            aggregated_data["creditors"] = creditors
+            creditors = Creditor.get_by_id(self.db, data["credor_id"])
+
+            result = []
+            
+            for c in creditors:
+                result.append({
+                    "nome": c.nome,
+                    "cpf_cnpj": c.cpf_cnpj,
+                    "email": c.email,
+                    "telefone": c.telefone,
+                })
+
+            aggregated_data["creditors"] = result
         except CustomAPIException as e:
             aggregated_data["errors"].append(f"Erro ao buscar credores: {str(e)}")
 
         try:
-            personal_documents = FindPersonalDocumentUserUseCase(self.db).execute(
-                credor_id=data["credor_id"],  
-                tipo=data.get("tipo"),
-                enviado_em=data.get("enviado_em")
-            )
-            aggregated_data["personal_documents"] = personal_documents
+            personal_documents = PersonalDocument.get_all_personal_documents(
+                db=self.db, 
+                credor_id=data["credor_id"]) or []
+
+            result = []
+
+            for doc in personal_documents:
+                tipo_name = doc.tipo.name if doc.tipo else None
+                arquivo_url = doc.arquivo_url if doc.arquivo_url else None
+                enviado_em = doc.enviado_em if doc.enviado_em else None
+                result.append({
+                    "tipo": tipo_name,
+                    "arquivo_url": arquivo_url,
+                    "enviado_em": enviado_em
+                })
+
+            aggregated_data["personal_documents"] = result
         except CustomAPIException as e:
             aggregated_data["errors"].append(f"Erro ao buscar documentos pessoais: {str(e)}")
 
         try:
-            precatory = FindPrecatoryUserUseCase(self.db).execute(
-                credor_id=data["credor_id"],  
-                numero_precatorio=data.get("numero_precatorio"),
-                valor_nominal=data.get("valor_nominal"),
-                foro=data.get("foro"),
-                data_publicacao=data.get("data_publicacao")
-            )
-            aggregated_data["precatory"] = precatory
+            precatory = Precatory.get_all_precatories(
+                db=self.db,
+                credor_id=data["credor_id"]) or []
+            
+            result = []
+
+            for doc in precatory:
+                numero_precatorio = doc.numero_precatorio if doc.numero_precatorio else None
+                valor_nominal = doc.valor_nominal if doc.valor_nominal else None
+                foro = doc.foro if doc.foro else None
+                data_publicacao = doc.data_publicacao if doc.data_publicacao else None
+
+                result.append({
+                    "numero_precatorio": numero_precatorio,
+                    "valor_nominal": valor_nominal,
+                    "foro": foro,
+                    "data_publicacao": data_publicacao
+                })
+
+            aggregated_data["precatory"] = result
         except CustomAPIException as e:
             aggregated_data["errors"].append(f"Erro ao buscar precatórios: {str(e)}")
 
         try:
-            certificates = FindCertificatesUserUsecase(self.db).execute(
-                credor_id=data["credor_id"],  
-                tipo=data.get("tipo"),
-                origem=data.get("origem"),
-                arquivo_url=data.get("arquivo_url"),
-                status=data.get("status"),
-                recebida_em=data.get("recebida_em")
-            )
-            aggregated_data["certificates"] = certificates
+            certificates = Certificate.get_all_certificates(
+                db=self.db,
+                credor_id=data["credor_id"] 
+            ) or []
+
+            result = []
+
+            for doc in certificates:
+                tipo = doc.tipo.name if doc.tipo else None
+                origem = doc.origem.name if doc.origem else None
+                arquivo_url = doc.arquivo_url if doc.arquivo_url else None
+                status = doc.status.name if doc.status else None
+                recebida_em = doc.recebida_em if doc.recebida_em else None
+                result.append({
+                    "tipo": tipo,
+                    "origem": origem,
+                    "arquivo_url": arquivo_url,
+                    "status": status,
+                    "recebida_em": recebida_em
+                })
+
+            aggregated_data["certificates"] = result
         except CustomAPIException as e:
             aggregated_data["errors"].append(f"Erro ao buscar certidões: {str(e)}")
 
-        return serialize.aggregated_serialize(aggregated_data)
+        return aggregated_data
     
