@@ -3,13 +3,13 @@ from src.api_main.domain.models.certificate_model import Certificate
 from src.api_main.domain.models.creditor_model import Creditor
 from src.api_main.infraestructure.database import get_db
 from sqlalchemy.exc import SQLAlchemyError
+import logging
 
-db = next(get_db())
+logger = logging.getLogger(__name__)
 
 def my_task(db_session):
     try:
         creditors = Creditor.get_all_creditors(db_session)
-        print(f"[INFO] Total de credores encontrados: {len(creditors)}")
 
         atualizados = []
         nao_atualizados = []
@@ -24,6 +24,7 @@ def my_task(db_session):
             for certificate in certificates:
                 if certificate.status.name == "PENDING":
                     certificate.updated_at = datetime.now(tz=timezone.utc)
+                    certificate.origem = certificate.origem.API
 
                     atualizados.append(certificate.id)
                 else:
@@ -31,9 +32,9 @@ def my_task(db_session):
 
         db_session.commit()
 
-        print("\n[RESUMO DA TAREFA]")
-        print(f"Certidões atualizadas: {len(atualizados)} -> IDs: {atualizados}")
-        print(f"Certidões não atualizadas (status diferente de 'PENDING'): {len(nao_atualizados)} -> IDs: {nao_atualizados}")
+        logger.info("\n[RESUMO DA TAREFA]")
+        logger.info(f"Certidões atualizadas: {len(atualizados)} -> IDs: {atualizados}")
+        logger.info(f"Certidões não atualizadas (status diferente de 'PENDING'): {len(nao_atualizados)} -> IDs: {nao_atualizados}")
 
     except SQLAlchemyError as e:
         db_session.rollback()

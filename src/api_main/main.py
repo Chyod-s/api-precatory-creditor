@@ -1,4 +1,3 @@
-from datetime import timedelta
 import sys
 import os
 from src.api_main.infraestructure.scheduler.task_scheduler import start_scheduler
@@ -14,6 +13,8 @@ from src.api_main.interface.http.swagger_config import api
 from flask_cors import CORS
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+scheduler = start_scheduler()
 
 load_dotenv()
 
@@ -35,7 +36,7 @@ api.init_app(app)
 
 jwt = JWTManager(app)
 
-scheduler = start_scheduler()
+
 
 @app.route('/home')
 def home():
