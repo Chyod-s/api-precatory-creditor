@@ -21,6 +21,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         navLogout.classList.remove('hidden');
         navLogout.classList.add('block');
 
-        navLogout.classList.add('h-6');
+        navLogout.classList.add('h-4');
     }
 });
