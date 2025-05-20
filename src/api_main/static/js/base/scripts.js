@@ -58,4 +58,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         msgEl.style.color = 'red';
         msgEl.textContent = 'Erro na conexão com o servidor.';
     }
+
 });

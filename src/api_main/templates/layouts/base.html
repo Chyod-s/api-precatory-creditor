@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <!-- <link href="/static/styles/output.css" rel="stylesheet"> -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
+    <script src="./../../static/js/base/navBar.js"></script>
     <title>Backend-Challenge</title>
     </head>
     <body class="bg-black text-white m-0 p-0 font-sans">
         
     <header class="w-full bg-gray-200 text-black font-bold py-4">
-    <nav class="flex justify-center px-4" aria-label="Credor">
+    <nav id="user-login" class="flex justify-center px-4 " aria-label="Credor">
         <div class="flex flex-wrap justify-center gap-x-10 gap-y-2 max-w-screen-xl w-full">
         <a href="/credor" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Credor</a>
         <a href="/documentos" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Documentos Pessoal</a>
@@ -22,6 +22,11 @@
         <a href="/certidao" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Certidões</a>
         </div>
     </nav>
+
+    <nav id="user-logout" class="hidden">
+
+    </nav>  
+    
     </header>
 
     <h1 class="pl-5 p-1 mt-6 text-3xl font-bold flex items-center justify-center">
