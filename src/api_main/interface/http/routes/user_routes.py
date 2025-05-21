@@ -26,7 +26,7 @@ class CreateUserResource(Resource):
         response, status_code = create_user(args)
         return response, status_code
 
-@user_ns.route('/credores')
+@user_ns.route('/creditors')
 class CreditorResource(Resource):
     @jwt_required()
     @user_ns.expect(creditor_parser)

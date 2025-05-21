@@ -36,7 +36,7 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
     console.log(obj);
 
     try {
-        const res = await fetch('/api/credores', {
+        const res = await fetch('/api/creditors', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
