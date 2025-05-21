@@ -8,7 +8,7 @@ from src.api_main.interface.http.controllers.creditor_controller import create_c
 from src.api_main.interface.http.controllers.user_controller import create_user, get_user
 from flask_jwt_extended import jwt_required
 
-user_ns = Namespace('usuarios', description='Operações relacionadas ao usuário')
+user_ns = Namespace('backend-challenge', description='API features for users')
 
 @user_ns.route('/login')
 @user_ns.expect(login_user_parser)
