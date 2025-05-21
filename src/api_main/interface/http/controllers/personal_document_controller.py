@@ -49,7 +49,7 @@ def create_personal_document(data):
         )
 
         return {"status": "success",
-                "message": "Photo document created successfully!",
+                "message": "Documento registrado com sucesso!",
                 }, 201
 
     except CustomAPIException as e:

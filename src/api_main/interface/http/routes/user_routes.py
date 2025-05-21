@@ -48,7 +48,7 @@ class CreditorResource(Resource):
         response, status_code = create_creditor(combined_args)
         return response, status_code
 
-@user_ns.route('/documentos')
+@user_ns.route('/documents')
 class PersonalDocumentResource(Resource):
     @jwt_required()
     @user_ns.expect(personal_document_parser)

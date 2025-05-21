@@ -22,7 +22,7 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
     formData.append('enviado_em', dataFormatada);
     
     try {
-        const res = await fetch('/api/documentos', {
+        const res = await fetch('/api/documents', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
