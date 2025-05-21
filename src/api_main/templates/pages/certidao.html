@@ -1,46 +1,68 @@
-{% extends "layouts/base.html" %}
-
-{% block title %}Cadastro de Certidão - Mercatório{% endblock %}
-
-{% block content %}
+{% extends "layouts/base.html" %} {% block title %}Cadastro de Certidão -
+Mercatório{% endblock %} {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md text-black">
-
-    <div class="flex items-center gap-22 mb-2">
-        <h2 class="text-2xl font-bold">Cadastro de Certidão</h2>
-        <select name="" id="op-credor" class="w-18 h-10">
-            
-        </select>
+  <div class="flex items-center gap-22 mb-2">
+    <h2 class="text-2xl font-bold">Cadastro de Certidão</h2>
+    <select name="" id="op-credor" class="w-18 h-10"></select>
+  </div>
+  <form
+    id="certificate-form"
+    method="POST"
+    action="/api/certidoes"
+    enctype="application/x-www-form-urlencoded"
+  >
+    <div class="mb-4">
+      <select id="tipo" name="tipo" class="w-full p-2 border rounded" required>
+        <option value="">Selecione a origem</option>
+        <option value="FEDERAL">Federal</option>
+        <option value="STATE">Estadual</option>
+        <option value="MUNICIPAL">Municipal</option>
+        <option value="LABOR">Trabalhista</option>
+      </select>
     </div>
-    <form id="certificate-form" method="POST" action="/api/certidoes" enctype="application/x-www-form-urlencoded">
-        <div class="mb-4">
-            <select id="tipo" name="tipo" class="w-full p-2 border rounded" required>
-                <option value="">Selecione a origem</option>
-                <option value="FEDERAL">Federal</option>
-                <option value="STATE">Estadual</option>
-                <option value="MUNICIPAL">Municipal</option>
-                <option value="LABOR">Trabalhista</option>
 
-            </select>
-        </div>
+    <div class="mb-4">
+      <input
+        type="file"
+        id="arquivo_url"
+        name="arquivo_url"
+        class="w-full p-2 border rounded"
+        accept=".pdf,.doc,.docx,.jpg,.png"
+      />
+    </div>
 
-        <div class="mb-4">
-            <input type="file" id="arquivo_url" name="arquivo_url" class="w-full p-2 border rounded" accept=".pdf,.doc,.docx,.jpg,.png" />
-        </div>
+    <div class="mb-4">
+      <label for="enviado_em" class="block text-gray-700"
+        >Data de cadastro:</label
+      >
+      <input
+        type="date"
+        id="enviado_em"
+        name="enviado_em"
+        class="w-full p-2 border rounded"
+      />
+    </div>
 
-        <div class="mb-4">
-            <label for="enviado_em" class="block text-gray-700">Data de cadastro:</label>
-            <input type="date" id="enviado_em" name="enviado_em" class="w-full p-2 border rounded">
-        </div>
+    <div class="flex w-full gap-5">
+      <button
+        type="submit"
+        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
+      >
+        Cadastrar
+      </button>
+      <button
+        id="logout"
+        type="button"
+        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
+      >
+        Sair
+      </button>
+    </div>
+  </form>
 
-        <div class="flex w-full gap-5">
-            <button type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Cadastrar</button>
-            <button id="logout" type="button" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Sair</button>
-        </div>
-    </form>
-
-    <p id="message" class="mt-4 text-center text-red-600"></p>
+  <p id="message" class="mt-4 text-center text-red-600"></p>
 </div>
 
 <script src="./../../static/js/user/certificado/scripts.js"></script>
-<script src="./../../static/js/base/scripts.js" ></script>
+<script src="./../../static/js/base/scripts.js"></script>
 {% endblock %}

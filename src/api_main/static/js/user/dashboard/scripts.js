@@ -50,7 +50,7 @@ document.getElementById('credor-form').addEventListener('submit', async (e) => {
         if (res.ok) {
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message || 'Credor cadastrado com sucesso!';
-            setTimeout(() => window.location.href = '/dashboard', 1000);
+            setTimeout(() => window.location.href = '/consulta_agregada', 1000);
         } else {
             msgEl.style.color = 'red';
             msgEl.textContent = responseData.message || 'Erro ao cadastrar o credor.';

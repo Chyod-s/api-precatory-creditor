@@ -36,6 +36,8 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
         if (res.ok) {
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message;
+
+            setTimeout(() => window.location.href = '/consulta_agregada', 1000);
         } else {
             msgEl.style.color = 'red';
             msgEl.textContent = responseData.message || 'Erro ao cadastrar documento.';
