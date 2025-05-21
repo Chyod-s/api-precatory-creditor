@@ -48,7 +48,7 @@ class Certificate(BaseModel):
         
         except Exception as e:
             print(f"Erro ao buscar certificados: {e}")
-            return None
+            return []
 
 
     def __repr__(self):
