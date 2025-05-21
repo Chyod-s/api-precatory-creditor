@@ -66,15 +66,6 @@ class CertificateResource(Resource):
         response, status_code = certificate_personal_document(args)
         return response, status_code
 
-@user_ns.route('/buscar-certidoes')
-class FindCertificatesUserResource(Resource):
-    @jwt_required()
-    @user_ns.expect(find_certificate_parser)
-    def get(self):
-        args = find_certificate_parser.parse_args()
-        response, status_code = find_certificates(args)
-        return response, status_code
-    
 @user_ns.route('/users/<int:user_id>/summary')
 class CreditorUserResource(Resource):
     @jwt_required()
