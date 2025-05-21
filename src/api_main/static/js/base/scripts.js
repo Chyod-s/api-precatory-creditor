@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const res = await fetch(`/api/buscar-credores-by-id/${sub_id}`, {
+        const res = await fetch(`/api/get-creditors-by-id/${sub_id}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
