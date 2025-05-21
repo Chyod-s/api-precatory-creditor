@@ -10,7 +10,7 @@ from flask_jwt_extended import jwt_required
 
 user_ns = Namespace('usuarios', description='Operações relacionadas ao usuário')
 
-@user_ns.route('/login-usuarios')
+@user_ns.route('/login')
 @user_ns.expect(login_user_parser)
 class LoginUserResource(Resource):
     def post(self):
