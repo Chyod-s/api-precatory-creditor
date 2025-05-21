@@ -47,7 +47,7 @@ def certificate_personal_document(data):
         )
 
         return {"status": "success",
-                "message": "Documento enviado com sucesso!",
+                "message": "Documento registrado com sucesso!",
                 "data": result}, 201
 
     except CustomAPIException as e:
