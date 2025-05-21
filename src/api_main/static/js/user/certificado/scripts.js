@@ -30,7 +30,7 @@ document.getElementById('certificate-form').addEventListener('submit', async (e)
     logFormData(formData);
 
     try {
-        const res = await fetch('/api/certidoes', {
+        const res = await fetch('/api/certificates', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -44,6 +44,11 @@ document.getElementById('certificate-form').addEventListener('submit', async (e)
         if (res.ok) {
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message;
+
+            setTimeout(() => {
+                window.location.href = '/certidao';
+            }, 1000);
+
         } else {
             msgEl.style.color = 'red';
             msgEl.textContent = responseData.message || 'Erro ao cadastrar precatorio.';

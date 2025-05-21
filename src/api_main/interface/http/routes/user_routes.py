@@ -57,7 +57,7 @@ class PersonalDocumentResource(Resource):
         response, status_code = create_personal_document(args)
         return response, status_code
 
-@user_ns.route('/certidoes')
+@user_ns.route('/certificates')
 class CertificateResource(Resource):
     @jwt_required()
     @user_ns.expect(certificate_parser)
