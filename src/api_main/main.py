@@ -81,6 +81,10 @@ def precatorio():
 def certidao():
     return render_template('pages/certidao.html')
 
+@app.route('/consulta_agregada')
+@login_required
+def consulta_agregada():
+    return render_template('pages/consulta_agregada.html')
 
 @app.route('/register')
 def register():

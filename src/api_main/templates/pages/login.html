@@ -1,28 +1,48 @@
-{% extends "layouts/base.html" %}
-
-{% block title %}Login - Mercatório{% endblock %}
-
-{% block content %}
+{% extends "layouts/base.html" %} {% block title %}Login - Mercatório{% endblock
+%} {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md text-black">
-    
-    <div class="flex items-center gap-64 mb-2">
-        <h2 class="text-2xl font-bold">Login</h2>
-        
-    </div>
+  <div class="flex items-center gap-64 mb-2">
+    <h2 class="text-2xl font-bold">Login</h2>
+  </div>
 
-    <form id="login-form">
-        <div class="mb-4">  
-            <input placeholder="Usuário" type="text" id="username" name="username" class="w-full p-2 border rounded" required>
-        </div>
-        <div class="mb-4">
-            <input placeholder="Senha" type="password" id="password" name="password" class="w-full p-2 border rounded" required>
-        </div>
-        <div class="flex w-full gap-5">
-            <button type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Entrar</button>
-            <button id="register-link" type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Cadastrar</button>
-        </div>
-    </form>
-    <p id="message" class="mt-4 text-center text-red-600"></p>
+  <form id="login-form">
+    <div class="mb-4">
+      <input
+        placeholder="Usuário"
+        type="text"
+        id="username"
+        name="username"
+        class="w-full p-2 border rounded"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        placeholder="Senha"
+        type="password"
+        id="password"
+        name="password"
+        class="w-full p-2 border rounded"
+        required
+      />
+    </div>
+    <div class="flex w-full gap-5">
+      <button
+        type="submit"
+        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
+      >
+        Entrar
+      </button>
+      <button
+        id="register-link"
+        type="submit"
+        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+  <p id="message" class="mt-4 text-center text-red-600"></p>
 </div>
 <script src="./../../static/js/user/login/scripts.js"></script>
 <script src="./../../static/js/base/scripts.js"></script>

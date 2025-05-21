@@ -1,45 +1,78 @@
-    <!DOCTYPE html>
-    <html lang="pt-BR">
-    <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='styles/output.css') }}" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='styles/output.css') }}"
+      rel="stylesheet"
+    />
     <script src="{{ url_for('static', filename='js/base/navBar.js') }}"></script>
-    <link rel="icon" href="{{ url_for('static', filename='assets/logo-30137655.ico') }}" type="image/x-icon">
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='assets/logo-30137655.ico') }}"
+      type="image/x-icon"
+    />
     <title>Backend-Challenge</title>
-    </head>
-    <body class="bg-black text-white m-0 p-0 font-sans">
-        
+  </head>
+  <body class="bg-black text-white m-0 p-0 font-sans">
     <header class="w-full bg-gray-200 text-black font-bold py-4">
-    <nav id="user-login" class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 bg-gray-200 shadow h-13" aria-label="Credor">
-        <div class="flex flex-wrap justify-center gap-x-10 gap-y-2 max-w-screen-xl w-full mt-2">
-            <a href="/credor" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Credor</a>
-            <a href="/documentos" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Documentos Pessoais</a>
-            <a href="/precatorio" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Precatórios</a>
-            <a href="/certidao" class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">Certidões</a>
+      <nav
+        id="user-login"
+        class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 bg-gray-200 shadow h-13"
+        aria-label="Credor"
+      >
+        <div
+          class="flex flex-wrap justify-center gap-x-10 gap-y-2 max-w-screen-xl w-full mt-2"
+        >
+          <a
+            href="/credor"
+            class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            >Credor</a
+          >
+          <a
+            href="/documentos"
+            class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            >Documentos Pessoais</a
+          >
+          <a
+            href="/precatorio"
+            class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            >Precatórios</a
+          >
+          <a
+            href="/certidao"
+            class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            >Certidões</a
+          >
+          <a
+            href="/consulta_agregada"
+            class="text-lg hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            >Relatório</a
+          >
         </div>
-    </nav>
+      </nav>
 
-    <nav id="user-logout" class="hidden">
-
-    </nav>  
-    
+      <nav id="user-logout" class="hidden"></nav>
     </header>
 
-    <h1 class="pl-5 p-1 mt-6 text-3xl font-bold flex items-center justify-center">
-        Mercatório Backend Challenge
+    <h1
+      class="pl-5 p-1 mt-6 text-3xl font-bold flex items-center justify-center"
+    >
+      Mercatório Backend Challenge
     </h1>
 
-    <main class="p-8">
-        {% block content %}{% endblock %}
-    </main>
-    
+    <main class="p-8">{% block content %}{% endblock %}</main>
+
     <footer class="mt-8 text-center text-gray-500">
-        &copy; 2025 Mercatório
+      &copy; 2025 Mercatório
     </footer>
-    </body>
-    <script src="./../../static/styles/output.css"></script>
-    </html>
+  </body>
+  <script src="./../../static/styles/output.css"></script>
+</html>

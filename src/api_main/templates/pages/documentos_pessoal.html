@@ -1,38 +1,54 @@
-{% extends "layouts/base.html" %}
-
-{% block title %}Cadastro de Documento Pessoal - Mercatório{% endblock %}
-
-{% block content %}
+{% extends "layouts/base.html" %} {% block title %}Cadastro de Documento Pessoal
+- Mercatório{% endblock %} {% block content %}
 <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md text-black">
- 
-    <div class="flex items-center gap-13 mb-2">
-        <h2 class="text-2xl font-bold">Cadastro de Documento</h2>
-        <select name="" id="op-credor" class="w-18 h-10">
-            
-        </select>
+  <div class="flex items-center gap-13 mb-2">
+    <h2 class="text-2xl font-bold">Cadastro de Documento</h2>
+    <select name="" id="op-credor" class="w-18 h-10"></select>
+  </div>
+
+  <form
+    id="personal-document-form"
+    method="POST"
+    action="/api/personal_documents"
+    enctype="application/x-www-form-urlencoded"
+  >
+    <div class="mb-4">
+      <select id="tipo" name="tipo" class="w-full p-2 border rounded" required>
+        <option value="">Selecione um tipo de Documento</option>
+        <option value="IDENTIDADE">Identidade</option>
+        <option value="COMPROVANTE_RESIDENCIA">Comprovante Residencia</option>
+        <option value="ETC">Etc</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <input
+        type="file"
+        id="arquivo_url"
+        name="arquivo_url"
+        class="w-full p-2 border rounded"
+        accept=".pdf,.doc,.docx,.jpg,.png"
+      />
     </div>
 
-    <form id="personal-document-form" method="POST" action="/api/personal_documents" enctype="application/x-www-form-urlencoded">
-        <div class="mb-4">
-            <select id="tipo" name="tipo" class="w-full p-2 border rounded" required>
-                <option value="">Selecione um tipo de Documento</option>
-                <option value="IDENTIDADE">Identidade</option>
-                <option value="COMPROVANTE_RESIDENCIA">Comprovante  Residencia</option>
-                <option value="ETC">Etc</option>
-            </select>
-        </div>
-        <div class="mb-4">
-            <input type="file" id="arquivo_url" name="arquivo_url" class="w-full p-2 border rounded" accept=".pdf,.doc,.docx,.jpg,.png" />
-        </div>
-        
-        <div class="flex w-full gap-5">
-            <button type="submit" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Cadastrar</button>
-            <button id="logout" type="button" class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200">Sair</button>
-        </div>
-    </form>
+    <div class="flex w-full gap-5">
+      <button
+        type="submit"
+        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
+      >
+        Cadastrar
+      </button>
+      <button
+        id="logout"
+        type="button"
+        class="w-1/2 p-2 bg-blue-500 hover:bg-green-500 text-white rounded transition-colors duration-200"
+      >
+        Sair
+      </button>
+    </div>
+  </form>
 
-    <p id="message" class="mt-4 text-center text-red-600"></p>
+  <p id="message" class="mt-4 text-center text-red-600"></p>
 </div>
-<script src="./../../static/js/user/documento_pessoal/scripts.js" ></script>
-<script src="./../../static/js/base/scripts.js" ></script>
+<script src="./../../static/js/user/documento_pessoal/scripts.js"></script>
+<script src="./../../static/js/base/scripts.js"></script>
 {% endblock %}
