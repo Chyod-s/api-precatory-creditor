@@ -34,6 +34,7 @@ jobs:
 
       - name: Run tests
         run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest || echo "pytest not found or failed"
 
 
