@@ -24,6 +24,14 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -31,10 +39,12 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm install
+   
+      - name: Install Node.js dependencies
+        run: npm install
 
       - name: Run tests
         run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest || echo "pytest not found or failed"
 
 
@@ -49,3 +59,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: squash
+
