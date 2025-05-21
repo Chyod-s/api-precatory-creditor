@@ -5,6 +5,7 @@ document.getElementById('back-link').addEventListener('click', (e) => {
 
 document.getElementById('register-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+    const msgEl = document.getElementById('message'); 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -19,8 +20,12 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
             body: JSON.stringify(data)
         });
 
+        const responseData = await response.json();
+
         if (response.ok) {
-            const result = await response.json();
+            msgEl.style.color = 'green';
+            msgEl.textContent = responseData.message;
+            
             window.location.href = '/home';
         } else {
             const error = await response.json();
