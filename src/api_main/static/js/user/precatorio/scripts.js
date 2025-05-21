@@ -33,6 +33,11 @@ document.getElementById('precatory-form').addEventListener('submit', async (e) =
         if (res.ok) {
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message;
+
+            setTimeout(() => {
+                window.location.href = '/precatorio';
+            }, 1000);
+
         } else {
             msgEl.style.color = 'red';
             msgEl.textContent = responseData.message || 'Erro ao cadastrar precatorio.';
