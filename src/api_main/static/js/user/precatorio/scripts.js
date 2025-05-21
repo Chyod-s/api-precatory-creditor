@@ -19,7 +19,7 @@ document.getElementById('precatory-form').addEventListener('submit', async (e) =
     formData.append('data_publicacao', enviado_em);
 
     try {
-        const res = await fetch('/api/precatorio', {
+        const res = await fetch('/api/precatory', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`

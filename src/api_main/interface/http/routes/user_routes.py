@@ -89,7 +89,7 @@ class GetCreditorUserResource(Resource):
         response, status_code = get_creditor(user_id)
         return response, status_code
 
-@user_ns.route('/precatorio')
+@user_ns.route('/precatory')
 class PregatoryUserResource(Resource):
     @jwt_required()
     @user_ns.expect(pregatory_parse)
