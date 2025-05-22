@@ -35,7 +35,7 @@ document.getElementById('precatory-form').addEventListener('submit', async (e) =
             msgEl.textContent = responseData.message;
 
             setTimeout(() => {
-                window.location.href = '/consulta_agregada';
+                window.location.href = '/precatorio';
             }, 1000);
 
         } else {
