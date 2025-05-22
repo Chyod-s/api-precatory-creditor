@@ -85,7 +85,28 @@ python src/api_main/main.py # api mockada
 - [x] Frontend responsivo com Tailwind
 
 - [x] Execução de tarefas automáticas via agendador
-  
+
+
+## Decisões técnicas e raciocínio
+
+Montei o projeto separando bem as responsabilidades pra facilitar manutenção e leitura do código. Escolhi Flask por ser leve e direto, SQLAlchemy pra ter mais flexibilidade com o banco, e JWT pra autenticação. No frontend usei Jinja2 com Tailwind, que funcionam bem junto com Flask. Também incluí um agendador simples pra simular execuções automáticas. Deixei tudo pronto pra rodar com Docker ou direto no Python.
+
+Utilizei:
+
+- **Flask** pela sua leveza e flexibilidade.
+
+- **SQLAlchemy** para facilitar a portabilidade entre bancos de dados.
+
+- **Alembic** para controle de versão do schema do banco.
+
+- **JWT** para autenticação segura e stateless.
+
+- **Jinja2 + Tailwind CSS** no frontend por serem simples e diretos, além de estarem integrados ao Flask.
+
+- Um **agendador customizado** foi implementado para simular tarefas automáticas, sem depender de bibliotecas externas pesadas.
+
+Também organizei a estrutura pensando em facilitar os testes e a integração com outros ambientes. Usei pytest nos testes e deixei o projeto pronto pra rodar com Docker, o que ajuda na instalação e evita problemas com dependências.
+
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
