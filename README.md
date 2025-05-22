@@ -33,10 +33,14 @@ Configuração e Execução (Docker)
 
 ### Instalação manual
 
+1 - Suba os containers com build forçado:
 ```bash
-docker-compose up --build
+docker-compose up -d --build
 ```
-
+2 - Acesse a aplicação:
+```bash
+http://localhost:5055
+```
 ---
 
 Configuração e Execução (Desenvolvimento)
