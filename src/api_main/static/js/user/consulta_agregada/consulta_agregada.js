@@ -37,7 +37,7 @@
                     }
                 }
             
-            html += `<h3 class='text-xl font-semibold mb-2'>Documentos</h3>`;
+            html += `<h3 class='text-1xl font-bold mb-2'>Documentos</h3>`;
 
             if (data.personal_documents && data.personal_documents.length > 0) {
                 html += `<div class="flex flex-wrap gap-4">`;
@@ -55,7 +55,7 @@
                 }
 
             
-            html += `<h3 class='text-xl font-semibold mb-2'>Precatórios</h3>`;
+            html += `<h3 class='text-xl font-bold mb-2'>Precatórios</h3>`;
 
             if (data.precatory && data.precatory.length > 0) {
                 html += `<div class="flex flex-wrap gap-4">`;
@@ -73,7 +73,7 @@
                 html += `</div>`;
             }
 
-            html += `<h3 class='text-xl font-semibold mb-2'>Certificados</h3>`;
+            html += `<h3 class='text-xl font-bold mb-2'>Certificados</h3>`;
 
             if (data.certificates && data.certificates.length > 0) {
                 html += `<div class="flex flex-wrap gap-4">`;
