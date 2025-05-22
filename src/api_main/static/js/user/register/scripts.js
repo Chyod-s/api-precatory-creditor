@@ -26,7 +26,9 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
             msgEl.style.color = 'green';
             msgEl.textContent = responseData.message;
             
-            window.location.href = '/home';
+            setTimeout(() => {
+                window.location.href = '/home'
+            }, 1000);
         } else {
             const error = await response.json();
             document.getElementById('message').textContent = error.message || 'Erro ao cadastrar.';

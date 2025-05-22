@@ -1,8 +1,8 @@
 """init migrations
 
-Revision ID: c73907614e37
+Revision ID: e906b8f2d1b5
 Revises: 
-Create Date: 2025-05-16 13:36:48.185353
+Create Date: 2025-05-22 10:25:22.747830
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'c73907614e37'
+revision: str = 'e906b8f2d1b5'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -59,7 +59,7 @@ def upgrade() -> None:
     op.create_table('documento_pessoal',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('credor_id', sa.Integer(), nullable=False),
-    sa.Column('tipo', sa.Enum('identidade', 'comprovante_residencia', 'etc', name='personaldocumentenum'), nullable=False),
+    sa.Column('tipo', sa.Enum('IDENTIDADE', 'COMPROVANTE_RESIDENCIA', 'ETC', name='personaldocumentenum'), nullable=False),
     sa.Column('arquivo_url', sa.String(), nullable=True),
     sa.Column('enviado_em', sa.Date(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),

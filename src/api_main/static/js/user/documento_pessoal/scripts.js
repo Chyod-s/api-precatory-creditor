@@ -5,6 +5,7 @@ document.getElementById('personal-document-form').addEventListener('submit', asy
     const token = sessionStorage.getItem('auth_token');
 
     const type = e.target.tipo.value;
+    
     const file = e.target.arquivo_url.files[0];
 
     const day = new Date();

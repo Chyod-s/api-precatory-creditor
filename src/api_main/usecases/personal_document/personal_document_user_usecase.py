@@ -1,3 +1,4 @@
+from src.api_main.domain.enums.personal_document_enum import PersonalDocumentEnum
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.domain.models.personal_document_model import PersonalDocument
 from datetime import datetime
@@ -6,7 +7,7 @@ class PersonalDocumentUserUseCase:
     def __init__(self, db):
         self.db = db
 
-    def execute(self, credor_id: int, tipo: str, arquivo_url: str, enviado_em: str):
+    def execute(self, credor_id: int, tipo: PersonalDocumentEnum, arquivo_url: str, enviado_em: str):
         if not all([credor_id, tipo, arquivo_url, enviado_em]):
             raise CustomAPIException("Dados inválidos", 422)
 
