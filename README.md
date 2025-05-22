@@ -4,6 +4,11 @@ Este projeto é uma API com frontend integrado para gerenciamento de precatório
 
 ---
 
+### Interface do sistema
+
+[Veja as imagens do frontend aqui](https://github.com/Chyod-s/api-precatory-creditor/tree/main/src/api_main/static/assets/fotos_front)
+
+
 ## Tecnologias Utilizadas
 
 - **Backend:** Python, Flask, SQLAlchemy, Alembic
