@@ -109,7 +109,6 @@
     
 
         function waitForSelectValue(callback) {
-        const select = document.getElementById('op-credor');
         const interval = setInterval(() => {
             if (select.value) {
             clearInterval(interval);
@@ -122,5 +121,5 @@
             fetchCredorData(credor_id);
         });
 
-        
+
     });
