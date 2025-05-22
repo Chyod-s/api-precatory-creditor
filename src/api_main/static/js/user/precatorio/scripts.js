@@ -1,4 +1,3 @@
-
 document.getElementById('precatory-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 

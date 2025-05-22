@@ -1,4 +1,3 @@
-// Logout: limpa token antes de redirecionar
 document.getElementById('logout')?.addEventListener('click', (e) => {
     e.preventDefault();
     sessionStorage.removeItem('auth_token'); 
