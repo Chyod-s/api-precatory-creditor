@@ -1,10 +1,10 @@
-from flask import jsonify, request
 from flask_jwt_extended import get_jwt_identity
 from src.api_main.usecases.creditor.find_creditor_user_usecase import FindCreditorUserUseCase
 from src.api_main.domain.error.exceptions import CustomAPIException
 from src.api_main.usecases.precatory.precatory_user_usecase import CreatePrecatoryUseCase
 from src.api_main.usecases.creditor.create_user_usecase import CreateUserUseCase
 from src.api_main.infraestructure.database.engine import get_db
+from itertools import chain
 
 def create_creditor(data):
     db = next(get_db())
@@ -43,19 +43,41 @@ def get_creditor(user_id):
 
     try:
         use_case = FindCreditorUserUseCase(db)
-        result = use_case.get_creditor_by_id(
-            user_id
-        )        
+        result = use_case.get_creditor_by_id(user_id)
+
+        precatories = [
+            p for i in result for p in i.precatories if p.numero_precatorio != '0'
+        ]
+        flattened_precatories = list(precatories)
+
         if not result:
             raise CustomAPIException("Credores não encontrados.", 404)
         
-        return [creditor_to_dict(c) for c in result], 200
+        list_creditors_precatories = []
+        for i in range(len(result)):
+            list_creditors_precatories.append(creditor_to_dict(result[i], flattened_precatories))
+            
+        return list_creditors_precatories, 200
 
     except CustomAPIException as e:
         return e.to_dict(), e.status_code
 
-def creditor_to_dict(creditor):
+
+def creditor_to_dict(creditor, precatories=None):
     return {
         "id": creditor.id,
-        "nome": creditor.nome
+        "nome": creditor.nome,
+        "cpf_cnpj": creditor.cpf_cnpj,
+        "email": creditor.email,
+        "telefone": creditor.telefone,
+        "precatorios": [
+            {
+                "numero_precatorio": p.numero_precatorio,
+                "valor_nominal": p.valor_nominal,
+                "foro": p.foro,
+                "data_publicacao": str(p.data_publicacao)
+            }
+            for p in precatories
+        ] if precatories else []
     }
+

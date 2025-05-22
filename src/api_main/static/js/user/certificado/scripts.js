@@ -46,7 +46,7 @@ document.getElementById('certificate-form').addEventListener('submit', async (e)
             msgEl.textContent = responseData.message;
 
             setTimeout(() => {
-                window.location.href = '/consulta_agregada';
+                window.location.href = '/certidao';
             }, 1000);
 
         } else {
