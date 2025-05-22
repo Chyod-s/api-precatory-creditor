@@ -44,8 +44,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         const responseData = await res.json();
-
-        console.log(responseData);
         
         if (Array.isArray(responseData)) {
             selectEl.innerHTML = responseData.map(doc => `

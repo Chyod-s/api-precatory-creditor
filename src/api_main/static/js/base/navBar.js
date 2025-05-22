@@ -8,15 +8,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         navLog.classList.remove('hidden');
         navLog.classList.add('block');
 
-        console.log('mostrando login');
-
         navLogout.classList.remove('block');
         navLogout.classList.add('hidden');
     } else {
         navLog.classList.remove('block');
-        navLog.classList.add('hidden');
-
-        console.log('mostrando logout');
+        navLog.classList.add('hidden'); 
 
         navLogout.classList.remove('hidden');
         navLogout.classList.add('block');
