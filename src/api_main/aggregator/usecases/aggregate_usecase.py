@@ -72,6 +72,14 @@ class AggregateUseCase:
                 foro = doc.foro if doc.foro else None
                 data_publicacao = doc.data_publicacao if doc.data_publicacao else None
 
+                if (
+                        numero_precatorio == "0"
+                        and valor_nominal is None
+                        and data_publicacao
+                        and data_publicacao.year == 2000
+                    ):
+                        continue
+                
                 result.append({
                     "numero_precatorio": numero_precatorio,
                     "valor_nominal": valor_nominal,
