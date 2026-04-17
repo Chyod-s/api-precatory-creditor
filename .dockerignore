@@ -7,3 +7,5 @@ __pycache__
 .pytest_cache
 src/api_main/__test__
 src/api_main/migrations/data
+src/api_mock
+venv
