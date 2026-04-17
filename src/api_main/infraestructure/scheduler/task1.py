@@ -1,13 +1,12 @@
 from datetime import datetime, timezone
-from src.api_main.domain.models.certificate_model import Certificate
-from src.api_main.domain.models.creditor_model import Creditor
-from src.api_main.infraestructure.database import get_db
 from sqlalchemy.exc import SQLAlchemyError
 import logging
 
 logger = logging.getLogger(__name__)
 
 def my_task(db_session):
+    from src.api_main.domain.models.certificate_model import Certificate
+    from src.api_main.domain.models.creditor_model import Creditor
     try:
         creditors = Creditor.get_all_creditors(db_session)
 
