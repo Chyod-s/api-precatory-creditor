@@ -32,15 +32,13 @@ app.secret_key = secret_key
 
 app.config.from_object(Config)
 
-api.add_namespace(user_ns)
+app.register_blueprint(frontend_bp)
 
 api.init_app(app)
 
 jwt = JWTManager(app)
 
-app.register_blueprint(frontend_bp)
-
 init_db(engine)
 
 if __name__ == "__main__":
-    app.run(host=app.config['HOST'], port=app.config['PORT'], debug=app.config['DEBUG'])
+    app.run(host=app.config['HOST'], port=app.config['PORT'], debug=app.config['DEBUG'], use_reloader=False)
