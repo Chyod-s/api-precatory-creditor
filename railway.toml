@@ -1,0 +1,9 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "python -m src.api_main.main"
+healthcheckPath = "/"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"

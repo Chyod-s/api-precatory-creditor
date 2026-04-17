@@ -6,7 +6,7 @@ load_dotenv()
 class Config:
     DEBUG = True
     HOST = '0.0.0.0'
-    PORT = 5055
+    PORT = int(os.getenv('PORT', 5055))
 
     JWT_SECRET = os.getenv('JWT_SECRET')
     JWT_ALGORITHM = 'HS256'
