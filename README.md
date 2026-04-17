@@ -56,19 +56,39 @@ Configuração e Execução (Desenvolvimento)
 ```bash
 # Crie e ative o ambiente virtual
 python -m venv .venv
-source .venv/bin/activate # no linux  
+source .venv/bin/activate # no Linux
 .venv\Scripts\Activate.ps1 # no Windows
 
-# Instale as dependências
+# Instale as dependências Python
 pip install -r requirements.txt
+
+# Instale as dependências Node.js (Tailwind)
+npm install
 
 # Execute as migrações
 alembic upgrade head
-
-# Inicie a aplicação
-python src/api_main/main.py # api principal
-python src/api_main/main.py # api mockada
 ```
+
+### Iniciando em desenvolvimento
+
+Cada serviço roda em um terminal separado:
+
+**1. API principal** (Flask — porta 5055)
+```bash
+python src/api_main/main.py
+```
+
+**2. API mockada**
+```bash
+python src/api_mock/main.py
+```
+
+**3. Tailwind CSS** (watch — recompila automaticamente ao salvar)
+```bash
+npm run build:css
+```
+
+> Acesse a aplicação em `http://localhost:5055`
 
 ## Funcionalidades
 
