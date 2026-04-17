@@ -1,7 +1,29 @@
 {
   "permissions": {
     "allow": [
-      "Bash(venv/Scripts/python -c \":*)"
+      "Bash(venv/Scripts/python -c \":*)",
+      "Bash(python src/api_main/main.py)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(pip install apscheduler)",
+      "Bash(pip install -r requirements.txt)",
+      "Bash(python -c \"import os; from dotenv import load_dotenv; print\\(''BEFORE:'', os.getenv\\(''DATABASE_URL''\\)\\); load_dotenv\\(\\); print\\(''AFTER:'', os.getenv\\(''DATABASE_URL''\\)\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(xargs cat)",
+      "Bash(python -c \"import os; print\\(''DATABASE_URL \\(system\\):'', os.environ.get\\(''DATABASE_URL'', ''NOT SET''\\)\\)\")",
+      "Bash(cmd.exe /c \"echo %DATABASE_URL%\")",
+      "Bash(cmd.exe /c \"set DATABASE_URL\")",
+      "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
+      "Bash(cmd.exe /c \"python --version && python -c \"\"import sys; print\\(sys.executable\\)\"\"\")",
+      "Bash(python -c \"import sqlalchemy; print\\(sqlalchemy.__version__, sqlalchemy.__file__\\)\")",
+      "Bash(netstat -ano)",
+      "Bash(cmd.exe /c \"netstat -ano | findstr :5000\")",
+      "Bash(cmd.exe /c \"tasklist /FI \"\"PID eq 15976\"\" && tasklist /FI \"\"PID eq 12308\"\" && tasklist /FI \"\"PID eq 6216\"\"\")",
+      "Bash(cmd.exe /c \"for %p in \\(15976 12308 6216\\) do tasklist /FI \"\"PID eq %p\"\" /FO CSV\")",
+      "Bash(cmd.exe /c \"wmic process where \"\"processid=15976\"\" get commandline,name 2>NUL\")",
+      "Bash(cmd.exe /c \"wmic process where \"\"processid=12308\"\" get commandline,name 2>NUL\")",
+      "Bash(cmd.exe /c \"wmic process where \"\"processid=6216\"\" get commandline,name 2>NUL\")",
+      "Bash(powershell.exe -Command \"Get-Process -Id 15976,12308,6216 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,Path\")",
+      "Bash(powershell.exe -Command \"Stop-Process -Id 12308,15976 -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 1; netstat -ano | Select-String '':5000''\")"
     ]
   }
 }

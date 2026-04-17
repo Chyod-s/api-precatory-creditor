@@ -30,8 +30,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
                 window.location.href = '/home'
             }, 1000);
         } else {
-            const error = await response.json();
-            document.getElementById('message').textContent = error.message || 'Erro ao cadastrar.';
+            document.getElementById('message').textContent = responseData.message || 'Erro ao cadastrar.';
         }
     } catch (err) {
         document.getElementById('message').textContent = 'Erro de conexão.';
