@@ -9,7 +9,8 @@ from src.api_main.utils.auth_utils import validate_jwt_token
 from flask import Flask, redirect, render_template, request, url_for
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
-from src.api_main.infraestructure.database import init_db, engine
+from src.api_main.infraestructure.database.engine import engine
+from src.api_main.infraestructure.database.base import init_db
 from src.api_main.config import Config
 from src.api_main.interface.http import user_ns
 from src.api_main.interface.http.swagger_config import api
