@@ -1,5 +1,8 @@
 import sys
 import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
 from src.api_main.infraestructure.scheduler.task_scheduler import start_scheduler
 from src.api_main.utils.login_required_util import login_required
 from src.api_main.utils.auth_utils import validate_jwt_token
@@ -12,8 +15,6 @@ from src.api_main.interface.http import user_ns
 from src.api_main.interface.http.swagger_config import api
 from flask_cors import CORS
 from src.api_main.interface.http.routes.frontend_routes import frontend_bp
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 scheduler = start_scheduler()
 
