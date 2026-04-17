@@ -1,7 +1,3 @@
-from src.api_main.domain.models.certificate_model import Certificate
-from src.api_main.domain.models.precatory_model import Precatory
-from src.api_main.domain.models.personal_document_model import PersonalDocument
-from src.api_main.domain.models.creditor_model import Creditor
 from src.api_main.domain.error.exceptions import CustomAPIException
 import src.api_main.utils.aggregated_serialize as serialize
 
@@ -10,6 +6,10 @@ class AggregateUseCase:
         self.db = db
 
     def aggregate_data(self, data):
+        from src.api_main.domain.models.certificate_model import Certificate
+        from src.api_main.domain.models.precatory_model import Precatory
+        from src.api_main.domain.models.personal_document_model import PersonalDocument
+        from src.api_main.domain.models.creditor_model import Creditor
         aggregated_data = {
             "creditors": None,
             "personal_documents": None,
