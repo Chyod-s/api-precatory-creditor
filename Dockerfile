@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/api_main ./src/api_main
 
-CMD gunicorn -w 2 -b 0.0.0.0:${PORT:-8080} src.api_main.main:app
+CMD ["sh", "-c", "gunicorn -w 2 -b 0.0.0.0:${PORT:-8080} src.api_main.main:app"]
