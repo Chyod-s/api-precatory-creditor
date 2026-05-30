@@ -16,7 +16,7 @@ api = Api(
     description = (
         "API para gestão de credores e documentos precatórios, incluindo cadastro, autenticação e emissão de certificados.\n"
         "\n"
-        "Acesse o frontend: http://localhost:5055/home"
+        "Acesse o frontend: https://api-precatory-creditor.vercel.app/home"
     ),
     contact_email="hix_x@hotmail.com",
     license="MIT",
